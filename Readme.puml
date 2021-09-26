@@ -1,0 +1,139 @@
+@startuml
+title Diagramme de classe
+skinparam linetype ortho
+
+class Partenaire{
+
+    + offrir(cadeau : ACadeau, abonne : Abonne)
+    + vendre(produit : Produit, client : Client)
+    + listeCadeau() : ArrayList<Acadeau>
+    + listeProduit() : ArrayList<Produit>
+}
+
+class Paiement{
+    getCost() : int
+}
+
+class Abonne{
+    vup : boolean
+    + acheter (produit : Produit)
+    + chargerCarte (carte : CarteInfidelite)
+    + recupererCadeau (cadeau : Cadeau, carte : CarteInfidelite)
+}
+
+class Client{
+    + acheter (produit : Produit)
+}
+
+class CarteInfidelite{
+    montant : double
+    nombrePoint : int
+    chargement (int montant)
+}
+class Ville
+class Produit{
+    int montant
+}
+
+package Composition{
+    class CatalogueCadeau
+    class Cadeau
+    abstract  ACadeau{
+        int pourcentageReduction
+    }
+    Cadeau -up|> ACadeau
+    CatalogueCadeau -up|> ACadeau
+    CatalogueCadeau *- "1..*" ACadeau
+}
+
+
+package Strategie{
+    class reductionParking
+    class transportCommun
+    interface IStrategie
+    reductionParking ..up|> IStrategie
+    transportCommun ..up|> IStrategie
+}
+
+Abonne -down> "*"CarteInfidelite : possede
+Abonne -right|> Client : est
+
+Ville -> ACadeau : sponsorisent
+CarteInfidelite -right> ACadeau : distribue
+Partenaire -> "*" ACadeau : offrent
+Partenaire - "*" Produit : vend
+ACadeau -> IStrategie
+Partenaire - Paiement
+Ville - Paiement
+Paiement - IStrategie
+
+
+@enduml
+
+@startuml
+title cas1
+left to right direction
+
+actor client as C
+rectangle "cumul de points" {
+    usecase "faire achat" as UC1
+    usecase "valider carte" as UC2
+
+    UC1 .> UC2 : <<include>>
+
+}
+
+C -- UC1
+@enduml
+
+@startuml
+title cas2
+left to right direction
+
+actor client as C
+rectangle "Consulter solde" {
+    usecase "consulter solde" as UC1
+    usecase "valider carte" as UC2
+
+    UC1 .> UC2 : <<include>>
+
+}
+
+C -- UC1
+@enduml
+
+@startuml
+title cas3
+left to right direction
+
+actor client as C
+rectangle "Catalogue des cadeaux" {
+    usecase "consulter annuaire" as UC1
+    usecase "Consulter description cadeau" as UC2
+    usecase "Consulter description magasin" as UC3
+
+    UC2 .> UC1 : <<extends>>
+    UC3 .> UC1 : <<extends>>
+
+}
+
+C -- UC1
+@enduml
+
+@startuml
+title cas4
+left to right direction
+
+actor client as C
+rectangle "Achat cadeau" {
+    usecase "demander offre" as UC1
+    usecase "recuperer offre" as UC2
+    usecase "valider carte" as UC3
+
+    UC2 .> UC1 : <<extends>>
+    UC2 .> UC3 : <<include>>
+
+}
+
+C -- UC1
+@enduml
