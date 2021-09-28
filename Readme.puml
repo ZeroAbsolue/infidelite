@@ -69,8 +69,8 @@ package Strategie{
 Abonne -up-> "*"CarteInfidelite : possede
 Abonne -up-|> Client : est
 
-Ville *-left- "*" Zone
-Zone *-left- "*" Partenaire
+Ville *-- "*" Zone
+Zone *-right- "*" Partenaire
 Partenaire -> "*" AProduit : vend ou offre
 Produit -> IStrategie
 CarteInfidelite -up-> "*"Partenaire : "est validée" 
