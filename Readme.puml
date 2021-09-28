@@ -1,6 +1,6 @@
 @startuml
 title Diagramme de classe
-skinparam linetype ortho
+' skinparam linetype ortho
 
 class Partenaire{
 
@@ -13,6 +13,8 @@ class Partenaire{
 class Paiement{
     getCost() : int
 }
+
+class Zone{}
 
 class Abonne{
     vup : boolean
@@ -28,28 +30,38 @@ class Client{
 class CarteInfidelite{
     montant : double
     nombrePoint : int
-    chargement (int montant)
+    chargement (montant : int )
+    nouvelleAchat(montant :floar)
+    listePatenaire(): ArrayList<Partenaire>
 }
 class Ville
-class Produit{
-    int montant
-}
 
-package Composition{
-    class CatalogueCadeau
-    class Cadeau
-    abstract  ACadeau{
-        int pourcentageReduction
+package Composite{
+    abstract  AProduit{
+        getCost():double
     }
-    Cadeau -up|> ACadeau
-    CatalogueCadeau -up|> ACadeau
-    CatalogueCadeau *- "1..*" ACadeau
+    class Produit{
+        istrategie : IStrategie
+        getCost():double
+    }
+    class CatalogueCadeau{
+        getCost() : double
+    }
+    class Cadeau{
+        istrategie : IStrategie
+        getCost():double
+    }
+    Produit -up-|> ACadeau
+    Cadeau -up-|> ACadeau
+    CatalogueCadeau -up-|> ACadeau
+    CatalogueCadeau *-up- "1..*" ACadeau
 }
 
 
 package Strategie{
     class reductionParking
     class transportCommun
+    class NormalStrategie
     interface IStrategie
     reductionParking ..up|> IStrategie
     transportCommun ..up|> IStrategie
@@ -59,6 +71,8 @@ Abonne -down> "*"CarteInfidelite : possede
 Abonne -right|> Client : est
 
 Ville -> ACadeau : sponsorisent
+Ville *- "*" Zone
+Zone *- "*" Partenaire
 CarteInfidelite -right> ACadeau : distribue
 Partenaire -> "*" ACadeau : offrent
 Partenaire - "*" Produit : vend
@@ -91,6 +105,18 @@ title cas2
 left to right direction
 
 actor client as C
+rectangle "Bonus d'infidelite" {
+    usecase "Utiliser carte" as UC1
+}
+
+C -- UC1
+@enduml
+
+@startuml
+title cas3
+left to right direction
+
+actor client as C
 rectangle "Consulter solde" {
     usecase "consulter solde" as UC1
     usecase "valider carte" as UC2
@@ -102,8 +128,10 @@ rectangle "Consulter solde" {
 C -- UC1
 @enduml
 
+
+
 @startuml
-title cas3
+title cas4
 left to right direction
 
 actor client as C
@@ -121,7 +149,7 @@ C -- UC1
 @enduml
 
 @startuml
-title cas4
+title cas5
 left to right direction
 
 actor client as C
