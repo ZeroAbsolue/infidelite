@@ -50,6 +50,7 @@ package Composite{
     Cadeau -up-|> Produit
     CatalogueCadeau -up-|> AProduit
     CatalogueCadeau *-up- "1..*" AProduit
+    
 }
 
 
@@ -57,20 +58,22 @@ package Strategie{
     class reductionParking
     class transportCommun
     class NormalStrategie
-    interface IStrategie
+    interface IStrategie{
+        getCost() : double
+    }
     reductionParking .up.|> IStrategie
     NormalStrategie .up.|> IStrategie
     transportCommun .up.|> IStrategie
 }
 
-Abonne --> "*"CarteInfidelite : possede
-Abonne --|> Client : est
+Abonne -up-> "*"CarteInfidelite : possede
+Abonne -up-|> Client : est
 
-Ville -down-> AProduit : sponsorisent
-Ville *-up- "*" Zone
+Ville *-left- "*" Zone
 Zone *-left- "*" Partenaire
 Partenaire -> "*" AProduit : vend ou offre
 Produit -> IStrategie
+CarteInfidelite -up-> "*"Partenaire : "est validée" 
 
 
 @enduml
