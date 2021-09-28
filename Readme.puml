@@ -4,14 +4,10 @@ title Diagramme de classe
 
 class Partenaire{
 
-    + offrir(cadeau : ACadeau, abonne : Abonne)
+    + offrir(cadeau : AProduit, abonne : Abonne)
     + vendre(produit : Produit, client : Client)
-    + listeCadeau() : ArrayList<Acadeau>
+    + listeCadeau() : ArrayList<AProduit>
     + listeProduit() : ArrayList<Produit>
-}
-
-class Paiement{
-    getCost() : int
 }
 
 class Zone{}
@@ -48,13 +44,12 @@ package Composite{
         getCost() : double
     }
     class Cadeau{
-        istrategie : IStrategie
         getCost():double
     }
-    Produit -up-|> ACadeau
-    Cadeau -up-|> ACadeau
-    CatalogueCadeau -up-|> ACadeau
-    CatalogueCadeau *-up- "1..*" ACadeau
+    Produit -left-|> AProduit
+    Cadeau -up-|> Produit
+    CatalogueCadeau -up-|> AProduit
+    CatalogueCadeau *-up- "1..*" AProduit
 }
 
 
@@ -63,23 +58,19 @@ package Strategie{
     class transportCommun
     class NormalStrategie
     interface IStrategie
-    reductionParking ..up|> IStrategie
-    transportCommun ..up|> IStrategie
+    reductionParking .up.|> IStrategie
+    NormalStrategie .up.|> IStrategie
+    transportCommun .up.|> IStrategie
 }
 
-Abonne -down> "*"CarteInfidelite : possede
-Abonne -right|> Client : est
+Abonne --> "*"CarteInfidelite : possede
+Abonne --|> Client : est
 
-Ville -> ACadeau : sponsorisent
-Ville *- "*" Zone
-Zone *- "*" Partenaire
-CarteInfidelite -right> ACadeau : distribue
-Partenaire -> "*" ACadeau : offrent
-Partenaire - "*" Produit : vend
-ACadeau -> IStrategie
-Partenaire - Paiement
-Ville - Paiement
-Paiement - IStrategie
+Ville -down-> AProduit : sponsorisent
+Ville *-up- "*" Zone
+Zone *-left- "*" Partenaire
+Partenaire -> "*" AProduit : vend ou offre
+Produit -> IStrategie
 
 
 @enduml
@@ -107,6 +98,9 @@ left to right direction
 actor client as C
 rectangle "Bonus d'infidelite" {
     usecase "Utiliser carte" as UC1
+    usecase "valider carte" as UC2
+
+    UC1 .> UC2 : <<include>>
 }
 
 C -- UC1
@@ -141,7 +135,7 @@ rectangle "Catalogue des cadeaux" {
     usecase "Consulter description magasin" as UC3
 
     UC2 .> UC1 : <<extends>>
-    UC3 .> UC1 : <<extends>>
+    UC3 .up.> UC1 : <<extends>>
 
 }
 
@@ -159,7 +153,7 @@ rectangle "Achat cadeau" {
     usecase "valider carte" as UC3
 
     UC2 .> UC1 : <<extends>>
-    UC2 .> UC3 : <<include>>
+    UC2 .down.> UC3 : <<include>>
 
 }
 
