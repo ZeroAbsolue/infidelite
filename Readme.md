@@ -17,7 +17,7 @@
 |AProduit|identifier une abstraction d'un service offert par un partenaire|Aproduit|
 |Produit|identifier un service concret offert par un partenaire|Aproduit,IStrategie|
 |CatalogueCadeau|Identifier un ensemble de produit |AProduit|
-|Cadeau|Identifier un produit dont la méthode de calcul de prix est différente du la méthode normal||
+|Cadeau|Identifier un produit dont la méthode de calcul de prix est différente du la méthode normal|Produit|
 |IStrategie|Identifier la strategie utilisée pour calcul le prix ou la reduction appliqué à un produit||
 |ReductionParking|Identifier la reduction appliquée à un ticket de parking|IStrategie|
 |ReductionParking|Identifier la reduction appliquée à un ticket de parking|IStrategie|

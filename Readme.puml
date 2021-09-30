@@ -50,7 +50,7 @@ package Composite{
     Cadeau -up-|> Produit
     CatalogueCadeau -up-|> AProduit
     CatalogueCadeau *-up- "1..*" AProduit
-    
+
 }
 
 
@@ -73,7 +73,7 @@ Ville *-- "*" Zone
 Zone *-right- "*" Partenaire
 Partenaire -> "*" AProduit : vend ou offre
 Produit -> IStrategie
-CarteInfidelite -up-> "*"Partenaire : "est validée" 
+CarteInfidelite -up-> "*"Partenaire : "est validée"
 
 
 @enduml
@@ -162,3 +162,4 @@ rectangle "Achat cadeau" {
 
 C -- UC1
 @enduml
+
