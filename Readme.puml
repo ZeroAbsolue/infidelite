@@ -3,14 +3,17 @@ title Diagramme de classe
 ' skinparam linetype ortho
 
 class Partenaire{
-
-    + offrir(cadeau : AProduit, abonne : Abonne)
+    # nom : String
+    # adresse: String
+    + offrir(cadeau : AProduit, client : Client)
     + vendre(produit : Produit, client : Client)
-    + listeCadeau() : ArrayList<AProduit>
-    + listeProduit() : ArrayList<Produit>
+    + catalogueProduits() : ArrayList<Produit>
 }
 
-class Zone{}
+class Zone{
+    # nom : String
+    # code_postal : String
+}
 
 class Abonne{
     vup : boolean
@@ -30,23 +33,40 @@ class CarteInfidelite{
     nouvelleAchat(montant :floar)
     listePatenaire(): ArrayList<Partenaire>
 }
-class Ville
+class Ville{
+    # nom :String
+    # superficie: double
+}
 
 package Composite{
     abstract  AProduit{
         getCost():double
     }
     class Produit{
-        istrategie : IStrategie
+        istrategie : IStrategyCout
         getCost():double
     }
     class CatalogueCadeau{
+        getCost() : double
+    }
+    class Parking{
+        #lieu : String
+        #prix : double
+        /'En heure'/ #durée : double
+        getCost() : double
+    }
+    class TransportCommun{
+        #type : Type
+        #prix : double
+        /'En heure'/ #durée : double
         getCost() : double
     }
     class Cadeau{
         getCost():double
     }
     Produit -left-|> AProduit
+    Parking -up-|> Produit
+    TransportCommun -up-|> Produit
     Cadeau -up-|> Produit
     CatalogueCadeau -up-|> AProduit
     CatalogueCadeau *-up- "1..*" AProduit
@@ -55,15 +75,20 @@ package Composite{
 
 
 package Strategie{
-    class reductionParking
-    class transportCommun
+    class ReductionParkingStartegy
+    class TransportCommunStartegy
     class NormalStrategie
-    interface IStrategie{
+    class DixPourcentCout{
+        getPoint():double
+    }
+    interface IStrategyCout{
         getCost() : double
     }
-    reductionParking .up.|> IStrategie
-    NormalStrategie .up.|> IStrategie
-    transportCommun .up.|> IStrategie
+    interface IStrategyPoint
+    ReductionParkingStartegy .up.|> IStrategyCout
+    NormalStrategie .up.|> IStrategyCout
+    TransportCommunStartegy .up.|> IStrategyCout
+    DixPourcentCout .up.|> IStrategyPoint
 }
 
 Abonne -up-> "*"CarteInfidelite : possede
@@ -72,7 +97,8 @@ Abonne -up-|> Client : est
 Ville *-- "*" Zone
 Zone *-right- "*" Partenaire
 Partenaire -> "*" AProduit : vend ou offre
-Produit -> IStrategie
+Produit -> IStrategyCout
+Produit -> IStrategyPoint
 CarteInfidelite -up-> "*"Partenaire : "est validée"
 
 
