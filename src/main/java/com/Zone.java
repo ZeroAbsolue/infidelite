@@ -47,6 +47,9 @@ public class Zone {
             ", codePostal='" + getCodePostal() + "'" +
             "}";
     }
+
+    public void ajouterPartenaire(Partenaire stm) {
+    }
    
 
 }
