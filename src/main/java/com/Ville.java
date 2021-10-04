@@ -1,5 +1,7 @@
 package com;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /* Classe permettant d'identifier les informations d'une ville */
@@ -12,6 +14,7 @@ public class Ville {
     }
 
     public Ville(String nom, double superficie) {
+        listeDesZones = new ArrayList<Zone>();
         this.nom = nom;
         this.superficie = superficie;
     }
@@ -42,12 +45,27 @@ public class Ville {
         this.listeDesZones.remove(zone);
     }
 
+    /* Permet de lister les zones d'une ville */
     public String listerLesZones() {
-        String result = "Ville de "+getNom()+", Superficie: "+getSuperficie()+"/n";
-         if(listeDesZones.size() ==0)
-         result += "Aucune zone";
-         result+="Liste des zones:"
+        String result = toString() + "/n";
+        if (listeDesZones.size() == 0)
+            result += "Aucune zone";
+        else {
+            result += "Liste des zones:/n";
+            Iterator<Zone> iterator = listeDesZones.iterator();
+            while (iterator.hasNext()) {
+                Zone zone = iterator.next();
+                result += zone;
+                if (iterator.hasNext())
+                    result += "/n";
+            }
+        }
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Ville de " + getNom() + ", Superficie: " + getSuperficie();
     }
 
 }
