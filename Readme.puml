@@ -40,29 +40,29 @@ class Ville{
 
 package Composite{
     abstract  AProduit{
-        getCost():double
+        getCout():double
     }
     class Produit{
         istrategie : IStrategyCout
-        getCost():double
+        getCout():double
     }
     class CatalogueCadeau{
-        getCost() : double
+        getCout() : double
     }
     class Parking{
         #lieu : String
         #prix : double
         /'En heure'/ #durée : double
-        getCost() : double
+        getCout() : double
     }
     class TransportCommun{
         #type : Type
         #prix : double
         /'En heure'/ #durée : double
-        getCost() : double
+        getCout() : double
     }
     class Cadeau{
-        getCost():double
+        getCout():double
     }
     Produit -left-|> AProduit
     Parking -up-|> Produit
@@ -82,7 +82,7 @@ package Strategie{
         getPoint():double
     }
     interface IStrategyCout{
-        getCost() : double
+        getCout() : double
     }
     interface IStrategyPoint
     ReductionParkingStartegy .up.|> IStrategyCout

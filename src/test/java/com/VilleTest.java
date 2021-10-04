@@ -22,7 +22,7 @@ public class VilleTest {
     @Test
     public void construtorTest() {
         assertEquals("Montreal", montreal.getNom());
-        assertEquals(36565, montreal.getSuperficie());
+        assertEquals(36565, montreal.getSuperficie(), 0.0);
     }
 
     @Test
@@ -37,8 +37,7 @@ public class VilleTest {
                 "Ville de Montreal, Superficie: 36565/r/nListe des zones:/r/nZone de Sherbrooke Bromptonville, code postal: J1C",
                 montreal.listerLesZones());
         montreal.retirerZone(sherbrooke);
-        "Ville de Montreal, Superficie: 36565/r/nAucune zone",
-                montreal.listerLesZones());
+        assertEquals("Ville de Montreal, Superficie: 36565/r/nAucune zone", montreal.listerLesZones());
 
     }
 }
