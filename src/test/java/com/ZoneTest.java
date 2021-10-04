@@ -19,7 +19,7 @@ public class ZoneTest {
     @Test
     public void constructortest() {
         assertEquals("Sainte catherine", sainteCatherine.getNom());
-        // assertEquals("J5C", sainteCatherine.getCodePostal());
+        assertEquals("J5C", sainteCatherine.getCodePostal()); 
     }
 
     // @Test
