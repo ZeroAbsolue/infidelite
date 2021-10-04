@@ -10,17 +10,17 @@ public class ZoneTest {
     Zone sainteCatherine;
     Partenaire stm;
 
-    @Before
-    public void setup() {
-        sainteCatherine = new Zone("Sainte catherine", "J5C");
-        stm = new Partenaire("Societe de transport de montreal", "800 Rue De La Gauchetière O, Montréal, QC H5A 1J6");
-    }
+    // @Before
+    // public void setup() {
+    //     sainteCatherine = new Zone("Sainte catherine", "J5C");
+    //     stm = new Partenaire("Societe de transport de montreal", "800 Rue De La Gauchetière O, Montréal, QC H5A 1J6");
+    // }
 
-    @Test
-    public void constructortest() {
-        assertEquals("Sainte catherine", sainteCatherine.getNom());
-        // assertEquals("J5C", sainteCatherine.getCodePostal());
-    }
+    // @Test
+    // public void constructortest() {
+    //     assertEquals("Sainte catherine", sainteCatherine.getNom());
+    //     // assertEquals("J5C", sainteCatherine.getCodePostal());
+    // }
 
     // @Test
     // public void listerLesPartenairesTest() {
