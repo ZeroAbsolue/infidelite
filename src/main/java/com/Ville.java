@@ -66,6 +66,7 @@ public class Ville {
     @Override
     public String toString() {
         return "Ville de " + getNom() + ", Superficie: " + getSuperficie();
+        
     }
 
 }

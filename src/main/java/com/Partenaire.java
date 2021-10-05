@@ -131,4 +131,18 @@ public class Partenaire {
         return carte.getNombrePoints() >= point && carte.getSolde() >= montant;
     }
 
+    public Partenaire() {
+    }
+
+
+    public Partenaire nom(String nom) {
+        setNom(nom);
+        return this;
+    }
+
+    public Partenaire adresse(String adresse) {
+        setAdresse(adresse);
+        return this;
+    }
+
 }
