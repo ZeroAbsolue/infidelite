@@ -30,14 +30,14 @@ public class VilleTest {
         montreal.ajouterZone(sherbrooke);
         montreal.ajouterZone(sainteCatherine);
         assertEquals(
-                "Ville de Montreal, Superficie: 36565/r/nListe des zones:/r/nZone de Sherbrooke Bromptonville, code postal: J1C/r/nZone de Sainte catherine, code postal: J5C",
+                "Ville de Montreal, Superficie: 36565.0/nListe des zones:/nZone de Sherbrooke Bromptonville, code postal: J1C/nZone de Sainte catherine, code postal: J5C",
                 montreal.listerLesZones());
         montreal.retirerZone(sainteCatherine);
         assertEquals(
-                "Ville de Montreal, Superficie: 36565/r/nListe des zones:/r/nZone de Sherbrooke Bromptonville, code postal: J1C",
+                "Ville de Montreal, Superficie: 36565.0/nListe des zones:/nZone de Sherbrooke Bromptonville, code postal: J1C",
                 montreal.listerLesZones());
         montreal.retirerZone(sherbrooke);
-        assertEquals("Ville de Montreal, Superficie: 36565/r/nAucune zone", montreal.listerLesZones());
+        assertEquals("Ville de Montreal, Superficie: 36565.0/nAucune zone", montreal.listerLesZones());
 
     }
 }
