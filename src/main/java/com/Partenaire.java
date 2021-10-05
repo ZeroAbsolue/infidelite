@@ -64,6 +64,7 @@ public class Partenaire {
         return result;
     }
 
+    
     @Override
     public String toString() {
         return "Partenaire: " + getNom() + "," + " adresse: " + getAdresse();

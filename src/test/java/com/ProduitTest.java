@@ -19,9 +19,9 @@ public class ProduitTest {
         assertEquals(0.25, biscuit.getNombrePoints(),0.0);
     }
     
-    // @Test 
-    // public void toStringTest() {
-    //         assertEquals("Biscuit, prix: 2.5$", biscuit);
-    // }
+    @Test 
+    public void toStringTest() {
+            assertEquals("Biscuit, prix: 2.5$", biscuit.toString());
+    }
 }
     

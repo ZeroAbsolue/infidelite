@@ -29,7 +29,6 @@ public class Produit extends Aproduit implements Cloneable {
         this.prix = prix;
     }
 
-    @Override
     public String toString(){
       return  getNom()+","+" prix: "+getPrix()+"$";
     }
