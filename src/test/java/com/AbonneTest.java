@@ -1,27 +1,32 @@
-// package com;
+package com;
 
-// import org.junit.Test;
-// import org.junit.Before;
+import org.junit.Test;
 
-// public class AbonneTest {
-//     Client nicolas;
-//     CarteInfidelite carte;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-//     @Before
-//     public void setup() {
-//         carte = new CarteInfidelite(1000,100);
-//         nicolas = new Abonne("Nicolas", carte);
-//     }
+import org.junit.Before;
 
-//     @Test
-//     public void test() {
-//         assertEquals("Nicolas", nicolas.getNom());
-//     }
+public class AbonneTest {
+    Client nicolas;
+    CarteInfidelite carte;
 
-//     @Test
-//     public void isVuptTest() {
-//         assertFalse(nicolas.isVup());
-//         nicolas.setIsVup(true);
-//         assertTrue(nicolas.isVup());
-//     }
-// }
+    @Before
+    public void setup() {
+        carte = new CarteInfidelite(1000,100);
+        nicolas = new Abonne("Nicolas", carte);
+    }
+
+    @Test
+    public void test() {
+        assertEquals("Nicolas", nicolas.getNom());
+    }
+
+    @Test
+    public void isVuptTest() {
+        assertFalse(((Abonne)nicolas).isVup());
+        ((Abonne)nicolas).setVup(true);
+        assertTrue(((Abonne)nicolas).isVup());
+    }
+}
