@@ -1,7 +1,7 @@
 | | |
 |-|-|
 |No de Travail pratique|	Travail pratique 1|
-|Étudiants|Wilfried NKOUEKAM MBOUGA,	|
+|Étudiants|Wilfried NKOUEKAM MBOUGA, Nadine Manuela GOKAR,	|
 |Cours|	MGL7361|
 |Session|S2021|
 |Enseignant|Naima Essadi|
