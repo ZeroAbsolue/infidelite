@@ -31,11 +31,11 @@ public class ZoneTest {
         sainteCatherine.ajouterPartenaire(stm);
         // sainteCatherine.ajouterPartenaire(saq);
         assertEquals(
-                "Zone de Sainte catherine, code postal: J5C/nListe des partenaires:/nPartenaire: Societe de transport de montreal, adresse: 800 Rue De La Gauchetière O, Montréal, QC H5A 1J6",
+                "Zone de Sainte catherine, code postal: J5C\nListe des partenaires:\nPartenaire: Societe de transport de montreal, adresse: 800 Rue De La Gauchetière O, Montréal, QC H5A 1J6",
                 sainteCatherine.listerLesPartenaires());
         sainteCatherine.retirerPartenaire(stm);
         
-        assertEquals("Zone de Sainte catherine, code postal: J5C/nAucun partenaire",
+        assertEquals("Zone de Sainte catherine, code postal: J5C\nAucun partenaire",
                 sainteCatherine.listerLesPartenaires());
 
     }

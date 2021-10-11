@@ -5,12 +5,15 @@ public abstract class Aproduit {
      * protected String nom; protected double prix;
      */
 
+    public abstract String description();
+
     public abstract double getCout();
 
-    public abstract double getNombrePoints();
+    public void ajouterProduit(Aproduit produit) {
+        throw new UnsupportedOperationException();
+    }
 
-    public abstract double getCout(Client client);
-
-    public abstract double getNombrePoints(Client client);
-
+    public void retirerProduit(Aproduit produit) {
+        throw new UnsupportedOperationException();
+    }
 }

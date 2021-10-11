@@ -48,17 +48,17 @@ public class Partenaire {
 
     /* Permet le catalogue de produits du partenaire */
     public String catalogueProduits() {
-        String result = toString() + "/n";
+        String result = toString() + "\n";
         if (listeDesProduits.size() == 0)
             result += "Aucun produit";
         else {
-            result += "Catalogue des produits:/n";
+            result += "Catalogue des produits:\n";
             Iterator<Produit> iterator = listeDesProduits.iterator();
             while (iterator.hasNext()) {
                 Produit produit = iterator.next();
                 result += produit;
                 if (iterator.hasNext())
-                    result += "/n";
+                    result += "\n";
             }
         }
         return result;
@@ -73,7 +73,7 @@ public class Partenaire {
     /* Permet de vendre un produit */
     public void vendre(Produit produit, Client client) throws CloneNotSupportedException {
         Produit cloneProduit = (Produit) produit.clone();
-        cloneProduit.setPrix(produit.getCout(client));
+        cloneProduit.setPrix(produit.getCout());
         listeDesVentes.add(cloneProduit);
         // TODO ajouter le partenaire a la liste des magasins ou le client a fait des
         // achats
@@ -81,17 +81,17 @@ public class Partenaire {
 
     /* Permet d'afficher la liste des ventes d'un partenaire */
     public String listeDesVentes() {
-        String result = toString() + "/n";
+        String result = toString() + "\n";
         if (listeDesVentes.size() == 0)
             result += "Aucune operation";
         else {
-            result += "Produits vendu(s):/n";
+            result += "Produits vendu(s):\n";
             Iterator<Produit> iterator = listeDesVentes.iterator();
             while (iterator.hasNext()) {
                 Produit operation = iterator.next();
                 result += operation;
                 if (iterator.hasNext())
-                    result += "/n";
+                    result += "\n";
             }
         }
         return result;
@@ -111,17 +111,17 @@ public class Partenaire {
      * partenaire
      */
     public String listeDesOffres() {
-        String result = toString() + "/n";
+        String result = toString() + "\n";
         if (listeDesOffres.size() == 0)
             result += "Aucune offre";
         else {
-            result += "Produits offert(s):/n";
+            result += "Produits offert(s):\n";
             Iterator<Produit> iterator = listeDesOffres.iterator();
             while (iterator.hasNext()) {
                 Produit operation = iterator.next();
                 result += operation;
                 if (iterator.hasNext())
-                    result += "/n";
+                    result += "\n";
             }
         }
         return result;

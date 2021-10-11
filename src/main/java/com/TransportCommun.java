@@ -20,8 +20,6 @@ public class TransportCommun extends Produit {
       return  super.toString()+", duree: "+getDuree()+" heure(s), point(s): "+getNombrePoints();
     }
 
-    
-    public String toString(Client client){
-      return  super.toString()+", duree: "+getDuree()+" heure(s), point(s): "+getNombrePoints(client);
-    }
+  
+
 }

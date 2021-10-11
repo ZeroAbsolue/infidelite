@@ -37,9 +37,9 @@ public class PartenaireTest {
         stm.ajouterProduit(ticketParking);
         stm.ajouterProduit(ticketTransportEnCommun);
         assertEquals(
-                "Partenaire: Societe de transport de montreal, adresse: 800 Rue De La Gauchetière O, Montréal, QC H5A 1J6/n"+
-                "Catalogue des produits:/n"+
-                "Parking UQAM Pavillon SH, prix: 25.0$, duree: 0.15 heure(s), point(s): 2.5/n"+
+                "Partenaire: Societe de transport de montreal, adresse: 800 Rue De La Gauchetière O, Montréal, QC H5A 1J6\n"+
+                "Catalogue des produits:\n"+
+                "Parking UQAM Pavillon SH, prix: 25.0$, duree: 0.15 heure(s), point(s): 2.5\n"+
                 "Transport commun URBAIN, prix: 3.5$, duree: 2.0 heure(s), point(s): 0.35",
                 stm.catalogueProduits());
     }
@@ -47,14 +47,14 @@ public class PartenaireTest {
     @Test
     public void vendreTest() throws CloneNotSupportedException {
         stm.vendre(ticketParking, john);
-        assertEquals("Partenaire: Societe de transport de montreal, adresse: 800 Rue De La Gauchetière O, Montréal, QC H5A 1J6/n"+
-        "Produits vendu(s):/n"+
+        assertEquals("Partenaire: Societe de transport de montreal, adresse: 800 Rue De La Gauchetière O, Montréal, QC H5A 1J6\n"+
+        "Produits vendu(s):\n"+
         "Parking UQAM Pavillon SH, prix: 25.0$, duree: 0.15 heure(s), point(s): 2.5", stm.listeDesVentes());
         stm.vendre(ticketParking, nicolas);
         assertEquals(
-        "Partenaire: Societe de transport de montreal, adresse: 800 Rue De La Gauchetière O, Montréal, QC H5A 1J6/n"+
-        "Produits vendu(s):/n"+
-        "Parking UQAM Pavillon SH, prix: 25.0$, duree: 0.15 heure(s), point(s): 2.5/n"+
+        "Partenaire: Societe de transport de montreal, adresse: 800 Rue De La Gauchetière O, Montréal, QC H5A 1J6\n"+
+        "Produits vendu(s):\n"+
+        "Parking UQAM Pavillon SH, prix: 25.0$, duree: 0.15 heure(s), point(s): 2.5\n"+
         "Parking UQAM Pavillon SH, prix: 25.0$, duree: 0.15 heure(s), point(s): 2.5", stm.listeDesVentes());
         // TODO faire un test dans le cas ou on applique une reduction de 10%
     }
@@ -63,8 +63,8 @@ public class PartenaireTest {
     public void offrirTest() {
         stm.offrir(ticketParking, nicolas);
         assertEquals(
-        "Partenaire: Societe de transport de montreal, adresse: 800 Rue De La Gauchetière O, Montréal, QC H5A 1J6/n"+
-        "Produits offert(s):/n"+
+        "Partenaire: Societe de transport de montreal, adresse: 800 Rue De La Gauchetière O, Montréal, QC H5A 1J6\n"+
+        "Produits offert(s):\n"+
         "Parking UQAM Pavillon SH, prix: 25.0$, duree: 0.15 heure(s), point(s): 2.5", stm.listeDesOffres());
     }
 

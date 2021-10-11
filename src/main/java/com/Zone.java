@@ -65,17 +65,17 @@ public class Zone {
 
     /* Permet de lister les partenaires d'une zone */
     public String listerLesPartenaires() {
-        String result = toString() + "/n";
+        String result = toString() + "\n";
         if (listeDesPartenaires.size() == 0)
             result += "Aucun partenaire";
         else {
-            result += "Liste des partenaires:/n";
+            result += "Liste des partenaires:\n";
             Iterator<Partenaire> iterator = listeDesPartenaires.iterator();
             while (iterator.hasNext()) {
                 Partenaire partner = iterator.next();
                 result += partner;
                 if (iterator.hasNext())
-                    result += "/n";
+                    result += "\n";
             }
         }
         return result;

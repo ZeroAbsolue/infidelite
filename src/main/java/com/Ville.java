@@ -47,17 +47,17 @@ public class Ville {
 
     /* Permet de lister les zones d'une ville */
     public String listerLesZones() {
-        String result = toString() + "/n";
+        String result = toString() + "\n";
         if (listeDesZones.size() == 0)
             result += "Aucune zone";
         else {
-            result += "Liste des zones:/n";
+            result += "Liste des zones:\n";
             Iterator<Zone> iterator = listeDesZones.iterator();
             while (iterator.hasNext()) {
                 Zone zone = iterator.next();
                 result += zone;
                 if (iterator.hasNext())
-                    result += "/n";
+                    result += "\n";
             }
         }
         return result;
