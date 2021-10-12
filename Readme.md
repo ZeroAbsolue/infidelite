@@ -32,6 +32,7 @@
 # Cas 1
 
 ![](out/DiagrammeDeChoixDeConception2/cas1.png)
+
 __Description détaillée du cas__
    __Nom__: Effectuer un achat de produit\
    __Objectif__ : Augmenter le nombre de points d'infidelite apres achat dans une boutique\
@@ -65,6 +66,7 @@ Diagramme de séquence
 # Cas 2
 
 ![](out/DiagrammeDeChoixDeConception2/cas2.png)
+
 __Description détaillée du cas__
    __Nom__: Bonus d'infidelite\
    __Objectif__ : Augmenter le nombre de points d'infidelite à la fin de chaque mois\
@@ -83,7 +85,7 @@ __Description détaillée du cas__
    
    Le client peut revenir à l'etape 1 pour recommencer le processus
 
-   __Extentions__\
+   __Extentions__
    * La carte du client n'a pas été utilisé
      * Le cas s'arrete
   
@@ -94,6 +96,7 @@ Diagramme de séquence
 # Cas 3
 
 ![](out/DiagrammeDeChoixDeConception2/cas3.png)
+
 __Description détaillée du cas__\
    __Nom__: Consulter carte\
    __Objectif__ : Consulter le solde de sa carte\
@@ -122,6 +125,7 @@ Diagramme de séquence
 # Cas 4
 
 ![](out/DiagrammeDeChoixDeConception2/cas4.png)
+
 __Description détaillée du cas__\
    __Nom__: Catalogue cadeaux\
    __Objectif__ : Consulter le catalogue de cadeaux\
@@ -152,6 +156,7 @@ Diagramme de séquence
 # Cas 5
 
 ![](out/DiagrammeDeChoixDeConception2/cas5.png)
+
 __Description détaillée du cas__ 
    __Nom__: Achat d'un cadeau en magasin\
    __Objectif__ : vendre un cadeau a un client\
@@ -171,7 +176,7 @@ __Description détaillée du cas__
    Le client peut revenir à l'etape 1 pour recommencer le processus
 
    __post condition__
-   
+
    Le solde de point du client est deduit du montant de l'achat
    
 Diagramme de séquence
