@@ -167,11 +167,9 @@ __Description détaillée du cas__
    __Précondition__\
     Le cadeau existe
 
-   __Scénario nominal__
-   1. Le client se présente à un magasin partenaire 
-   2. Il demande une des offres d’infidélité
-   3. Le magasin valide l’offre sur sa carte 
-   4. Le client repart avec son cadeau
+   __Scénario nominal__ 
+   1. Il demande une des offres d’infidélité
+   2. Le magasin valide l’offre sur sa carte 
    
    Le client peut revenir à l'etape 1 pour recommencer le processus
 
