@@ -64,8 +64,6 @@ public class Partenaire {
         return result;
     }
 
-    
-    @Override
     public String toString() {
         return "Partenaire: " + getNom() + "," + " adresse: " + getAdresse();
     }
@@ -75,8 +73,9 @@ public class Partenaire {
         Produit cloneProduit = (Produit) produit.clone();
         cloneProduit.setPrix(produit.getCout());
         listeDesVentes.add(cloneProduit);
-        // TODO ajouter le partenaire a la liste des magasins ou le client a fait des
-        // achats
+        if (client instanceof Abonne) {
+            ((Abonne) client).ajouterAchatChezPartenaire(this);
+        }
     }
 
     /* Permet d'afficher la liste des ventes d'un partenaire */
@@ -102,6 +101,8 @@ public class Partenaire {
      */
     public void offrir(Produit produit, Client client) {
         listeDesOffres.add(produit);
+        if (client instanceof Abonne)
+            ((Abonne) client).ajouterAchatChezPartenaire(this);
         // TODO ajouter le bout de code qui permet de reduire le nombre de points dans
         // la carte du client
     }
@@ -134,7 +135,6 @@ public class Partenaire {
 
     public Partenaire() {
     }
-
 
     public Partenaire nom(String nom) {
         setNom(nom);
