@@ -31,31 +31,31 @@
 # Cas 1
 
 ![](out/DiagrammeDeChoixDeConception2/cas1.png)
-__Description détaillée du cas__ 
-   __Nom__: Cumul de points
-   __Objectif__ : Augmenter le nombre de points d'infidelite apres achat dans une boutique
-   __Acteur principal__
-   Client: Souhaite faire un achat et cumuler des points
-   __Dates__ : 2021-10-11
-   __Version__: 0.1
-   __Précondition__
-   Le client possede une carte d'infidelite
+__Description détaillée du cas__\
+   __Nom__: Effectuer un achat de produit\
+   __Objectif__ : Augmenter le nombre de points d'infidelite apres achat dans une boutique\
+   __Acteur principal__\
+   Client: Souhaite faire un achat et cumuler des points\
+   __Dates__ : 2021-10-11\
+   __Version__: 0.1\
+   __Précondition__\
+   Le client possede une carte d'infidelite\
    
-   __Scénario nominal__
+   __Scénario nominal__\
    1. Le client fait un achat dans une boutique partenaire
-   2. Le client valide sa carte d’infidélité lors au passage en caisse
+   2. Le client valide sa carte d’infidélité au passage en caisse
    
    Le client peut revenir à l'etape 1 pour recommencer le processus
 
-   __Post condition__
-    Le sytème reduit le solde du client du montant de l'achat
-    Le système accumule 10% du montant d’achat en points sur la carte client
-    Le système ajoute le partenaire dans la liste des boutiques ou le client a fait des achats pour ce mois
+   __Post condition__\
+    1. Le sytème reduit le solde du client du montant de l'achat
+    2. Le système accumule 10% du montant d’achat en points sur la carte client
+    3. Le système ajoute le partenaire dans la liste des boutiques ou le client a fait des achats pour ce mois
    
    __Extentions__
-   * 2.  La carte du client n'est pas validé
+   * 2.La carte du client n'est pas validé
      * Le cas s'arrete
-   * 5. Le partenaire existe déjà dans la liste des boutiques ou le client a fait des achats pour ce mois
+   * 5.Le partenaire existe déjà dans la liste des boutiques ou le client a fait des achats pour ce mois
      * Le cas s'arrête 
   
 Diagramme de séquence
@@ -64,24 +64,24 @@ Diagramme de séquence
 # Cas 2
 
 ![](out/DiagrammeDeChoixDeConception2/cas2.png)
-__Description détaillée du cas__ 
-   __Nom__: Bonus d'infidelite
-   __Objectif__ : Augmenter le nombre de points d'infidelite à la fin de chaque mois
-   __Acteur principal__
-   Client: Obtenir bonus d'infidelite 
-   __Dates__ : 2021-10-11
-   __Version__: 0.1
-   __Précondition__
-   Le client possede une carte d'infidelite
+__Description détaillée du cas__\ 
+   __Nom__: Bonus d'infidelite\
+   __Objectif__ : Augmenter le nombre de points d'infidelite à la fin de chaque mois\
+   __Acteur principal__\
+   Client: Obtenir bonus d'infidelite \
+   __Dates__ : 2021-10-11\
+   __Version__: 0.1\
+   __Précondition__\
+   Le client possede une carte d'infidelite\
    
-   __Scénario nominal__
-   1. Le client a utilisé sa carte dans N magasins pendant le mois qui se termine
+   __Scénario nominal__\
+   1. Le client a utilisé sa carte dans N magasins pendant le mois qui se termine\
 
-  __Post condition__
-     Le client reçoit un bonus de Nx10 points d’infidélité (N > 1)
+  __Post condition__\
+     Le client reçoit un bonus de Nx10 points d’infidélité (N > 1)\
    
    Le client peut revenir à l'etape 1 pour recommencer le processus
-   __Extentions__
+   __Extentions__\
    * La carte du client n'a pas été utilisé
      * Le cas s'arrete
   
@@ -92,25 +92,25 @@ Diagramme de séquence
 # Cas 3
 
 ![](out/DiagrammeDeChoixDeConception2/cas3.png)
-__Description détaillée du cas__ 
-   __Nom__: Consulter carte
-   __Objectif__ : Consulter le solde de sa carte
-   __Acteur principal__
-   Client: Obtenir le solde de sa carte d'infidelite 
-   __Dates__ : 2021-10-11
-   __Version__: 0.1
-   __Précondition__
-   Le client possede une carte d'infidelite
+__Description détaillée du cas__\
+   __Nom__: Consulter carte\
+   __Objectif__ : Consulter le solde de sa carte\
+   __Acteur principal__\
+   Client: Obtenir le solde de sa carte d'infidelite \
+   __Dates__ : 2021-10-11\
+   __Version__: 0.1\
+   __Précondition__\
+   Le client possede une carte d'infidelite\
    
-   __Scénario nominal__
+   __Scénario nominal__\
    1. Le client choisit l'option de consulter son solde
    2. Le système lui propose de valider sa carte
    3. Le client valide sa carte
    4. Le système lui affiche le solde de son compte
    
    Le client peut revenir à l'etape 1 pour recommencer le processus
-   __Extentions__
-   * 3. La carte du client n'a pas été validé
+   __Extentions__\
+   * 3.La carte du client n'a pas été validé
      * Retour à 2
   
 Diagramme de séquence
@@ -119,27 +119,27 @@ Diagramme de séquence
 # Cas 4
 
 ![](out/DiagrammeDeChoixDeConception2/cas4.png)
-__Description détaillée du cas__ 
-   __Nom__: Catalogue cadeaux
-   __Objectif__ : Consulter le catalogue de cadeaux
-   __Acteur principal__
-   Client: Obtenir les informations d'un catalogue de cadeaux 
-   __Dates__ : 2021-10-11
-   __Version__: 0.1
-   __Précondition__
-   Le catalogue existe
+__Description détaillée du cas__\
+   __Nom__: Catalogue cadeaux\
+   __Objectif__ : Consulter le catalogue de cadeaux\
+   __Acteur principal__\
+   Client: Obtenir les informations d'un catalogue de cadeaux\
+   __Dates__ : 2021-10-11\
+   __Version__: 0.1\
+   __Précondition__\
+   Le catalogue existe\
    Chaque cadeau a un prix en points initialement définis
    
-   __Scénario nominal__
+   __Scénario nominal__\
    1. Le client choisit l'option de consulter le catalogue de cadeaux
    2. Le système lui propose la l'annuaire des cadeaux disponibles
    
    Le client peut revenir à l'etape 1 pour recommencer le processus
    __Extentions__
-   * 3. Le client veut consulter le prix en point d'un cadeau
-   * 4. Le système lui affiche le cadeau et son prix en point
-   * 5. Le client veut consulter le magasin ou le produit est vendu
-   * 6. Le système lui affiche le magasin ou le cadeau est vendu
+   * 3.Le client veut consulter le prix en point d'un cadeau
+   * 4.Le système lui affiche le cadeau et son prix en point
+   * 5.Le client veut consulter le magasin ou le produit est vendu
+   * 6.Le système lui affiche le magasin ou le cadeau est vendu
   
 Diagramme de séquence
 <span style="color:red">Faire le diagramme de sequence ici</span>
@@ -148,14 +148,14 @@ Diagramme de séquence
 # Cas 5
 
 ![](out/DiagrammeDeChoixDeConception2/cas5.png)
-__Description détaillée du cas__ 
-   __Nom__: Achat d'un cadeau en magasin
-   __Objectif__ : vendre un cadeau a un client
-   __Acteur principal__
-   Client: Acheter un cadeau 
-   __Dates__ : 2021-10-11
-   __Version__: 0.1
-   __Précondition__
+__Description détaillée du cas__\ 
+   __Nom__: Achat d'un cadeau en magasin\
+   __Objectif__ : vendre un cadeau a un client\
+   __Acteur principal__\
+   Client: Acheter un cadeau \
+   __Dates__ : 2021-10-11\
+   __Version__: 0.1\
+   __Précondition__\
     Le cadeau existe
 
    __Scénario nominal__
@@ -165,7 +165,7 @@ __Description détaillée du cas__
    4. Le client repart avec son cadeau
    
    Le client peut revenir à l'etape 1 pour recommencer le processus
-   __post condition__
+   __post condition__\
    Le solde de point du client est deduit du montant de l'achat
    
 Diagramme de séquence
