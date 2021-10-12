@@ -27,11 +27,12 @@
 ## Diagramme de classe
 ![](out/DiagrammeDeChoixDeConception2/Diagramme%20de%20classe.png)
 
+
 ## Réalisation des cas d'utilisation minimaux
 # Cas 1
 
 ![](out/DiagrammeDeChoixDeConception2/cas1.png)
-__Description détaillée du cas__\
+__Description détaillée du cas__
    __Nom__: Effectuer un achat de produit\
    __Objectif__ : Augmenter le nombre de points d'infidelite apres achat dans une boutique\
    __Acteur principal__\
@@ -39,9 +40,9 @@ __Description détaillée du cas__\
    __Dates__ : 2021-10-11\
    __Version__: 0.1\
    __Précondition__\
-   Le client possede une carte d'infidelite\
+   Le client possede une carte d'infidelite
    
-   __Scénario nominal__\
+   __Scénario nominal__
    1. Le client fait un achat dans une boutique partenaire
    2. Le client valide sa carte d’infidélité au passage en caisse
    
@@ -64,7 +65,7 @@ Diagramme de séquence
 # Cas 2
 
 ![](out/DiagrammeDeChoixDeConception2/cas2.png)
-__Description détaillée du cas__\ 
+__Description détaillée du cas__
    __Nom__: Bonus d'infidelite\
    __Objectif__ : Augmenter le nombre de points d'infidelite à la fin de chaque mois\
    __Acteur principal__\
@@ -72,15 +73,16 @@ __Description détaillée du cas__\
    __Dates__ : 2021-10-11\
    __Version__: 0.1\
    __Précondition__\
-   Le client possede une carte d'infidelite\
+   Le client possede une carte d'infidelite
    
-   __Scénario nominal__\
-   1. Le client a utilisé sa carte dans N magasins pendant le mois qui se termine\
+   __Scénario nominal__
+   1. Le client a utilisé sa carte dans N magasins pendant le mois qui se termine
 
   __Post condition__\
-     Le client reçoit un bonus de Nx10 points d’infidélité (N > 1)\
+   Le client reçoit un bonus de Nx10 points d’infidélité (N > 1)
    
    Le client peut revenir à l'etape 1 pour recommencer le processus
+
    __Extentions__\
    * La carte du client n'a pas été utilisé
      * Le cas s'arrete
@@ -102,13 +104,14 @@ __Description détaillée du cas__\
    __Précondition__\
    Le client possede une carte d'infidelite\
    
-   __Scénario nominal__\
+   __Scénario nominal__
    1. Le client choisit l'option de consulter son solde
    2. Le système lui propose de valider sa carte
    3. Le client valide sa carte
    4. Le système lui affiche le solde de son compte
    
    Le client peut revenir à l'etape 1 pour recommencer le processus
+
    __Extentions__\
    * 3.La carte du client n'a pas été validé
      * Retour à 2
@@ -130,11 +133,12 @@ __Description détaillée du cas__\
    Le catalogue existe\
    Chaque cadeau a un prix en points initialement définis
    
-   __Scénario nominal__\
+   __Scénario nominal__
    1. Le client choisit l'option de consulter le catalogue de cadeaux
    2. Le système lui propose la l'annuaire des cadeaux disponibles
    
    Le client peut revenir à l'etape 1 pour recommencer le processus
+
    __Extentions__
    * 3.Le client veut consulter le prix en point d'un cadeau
    * 4.Le système lui affiche le cadeau et son prix en point
@@ -148,7 +152,7 @@ Diagramme de séquence
 # Cas 5
 
 ![](out/DiagrammeDeChoixDeConception2/cas5.png)
-__Description détaillée du cas__\ 
+__Description détaillée du cas__ 
    __Nom__: Achat d'un cadeau en magasin\
    __Objectif__ : vendre un cadeau a un client\
    __Acteur principal__\
@@ -165,7 +169,9 @@ __Description détaillée du cas__\
    4. Le client repart avec son cadeau
    
    Le client peut revenir à l'etape 1 pour recommencer le processus
-   __post condition__\
+
+   __post condition__
+   
    Le solde de point du client est deduit du montant de l'achat
    
 Diagramme de séquence
