@@ -104,7 +104,7 @@ __Description détaillée du cas__\
    Client: Obtenir le solde de sa carte d'infidelite \
    __Dates__ : 2021-10-11\
    __Version__: 0.1\
-   __Précondition__\
+   __Précondition__
    Le client possede une carte d'infidelite\
    
    __Scénario nominal__
@@ -115,7 +115,7 @@ __Description détaillée du cas__\
    
    Le client peut revenir à l'etape 1 pour recommencer le processus
 
-   __Extentions__\
+   __Extentions__
    * 3.La carte du client n'a pas été validé
      * Retour à 2
   
