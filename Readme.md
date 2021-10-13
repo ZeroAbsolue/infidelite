@@ -193,7 +193,7 @@ Diagramme de séquence
 | Primitive                            | AProduct        |
 | Composite                            | CatalogueCadeau |
 | Leaf                                 | Produit         |
-| method()                             | getCost         |
+| method()                             | getNombreDePoints(), getCout()         |
 
 Nous nous sommes rendus compte qu'un catalogue cadeau ou catalogue de produit en réalité correspond à une collection de plusieurs produits sous un seul élement (Catalogue). Nous désirions facilement accéder à la description du catologue de produit ou cadeau de la même manière que nous le faisions avec la description du produit. Sachant qu'à travers des itérations ou une boucle for nous pouvons parcourir le catalogue produit, nous avons choisis d'implémenté le catalogue et les produits sous forme de design pattern composite
 
@@ -202,6 +202,6 @@ Nous nous sommes rendus compte qu'un catalogue cadeau ou catalogue de produit en
 | ------------------------------------ | -------------------------------------------------------- |
 | Strategy                             | IStrategyCout                                            |
 | ConcreteStrategy                     | dixPourCentCout,<br>NormalStrategie |
-| doWork()                             | getCost():Double                                         |
+| doWork()                             | getCout():Double                                         |
 
 Ici nous désirions protéger l'action de calculer les couts d'un produit des différentes variantes d'algorithme qui pourraient exister pour effectuer cette action. Nous avons choisi donc d'utiliser le design pattern Strategy 
