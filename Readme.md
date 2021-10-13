@@ -19,11 +19,10 @@
 | Classe         | CatalogueCadeau  | Identifier un ensemble de produit                                                           | AProduit               | Un Catalogue de cadeau est composé de Produit abstrait et est aussi un produit abstrait                                           |                                                                                                                                   |
 | Classe         | Cadeau           | Identifier un produit dont la méthode de calcul de prix est différente du la méthode normal | Produit                | Un cadeau est un produit dont la stratégie de calcul de prix est différente de celle normale                                      |                                                                                                                                   |
 | Interface      | IStrategyCout    | Identifier la strategie utilisée pour calcul le prix ou la reduction appliqué à un produit  |                        |                                                                                                                                   | Encapsuler à haut niveaux les variations possible qui pourrait avoir lieu lors du calcul de prix                                  |
-| Classe         | ReductionParking | Identifier la reduction appliquée à un ticket de parking                                    | IStrategyCout          | correspond à une variante de calcul de prix d'un produit de type ticket de parking                                                |                                                                                                                                   |
-| Classe         | TransportCommun  | Identifier la reduction appliquée à un transport en commun                                  | IStrategyCout          | correspond à une variante de calcul de prix d'un produit de type transport en commun                                              |                                                                                                                                   |
+| Classe         | DixPourCentCout | Effectuer une reduction de 10 pour cent sur le cout                                   | IStrategyCout          | correspond à une variante d'algorithme de calcul de cout de produit                                                |                                                                                                                                   |
 | Classe         | NormalStrategie  | Identifier qu'aucune reduction n'est appliquée au produit                                   | IStrategyCout          | variante par défaut pour le calcul du prix d'un produit                                                                           |                                                                                                                                   |
 | Interface      | IStrategyPoint   | Identifier la strategie utilisée pour calcul le nombre de point appliqué à un produit       |                        |                                                                                                                                   | Encapsuler à haut niveaux les variations possible qui pourrait avoir lieu lors du calcul du nombre de points associe a un produit |
-| Classe         | DixPourCentCout  | Identifier que dix pour cent du cout du produit est considere comme nombre de point         | IStrategyPoint         | variante permettant de definir que dix pour cent du cout du produit est considere comme nombre de point                           |                                                                                                                                   |
+| Classe         | DixPourCentPoint  | Identifier que dix pour cent du cout du produit est considere comme nombre de point         | IStrategyPoint         | variante permettant de definir que dix pour cent du cout du produit est considere comme nombre de point                           |                                                                                                                                   |
 ## Diagramme de classe
 ![](out/DiagrammeDeChoixDeConception2/Diagramme%20de%20classe.png)
 
@@ -90,7 +89,8 @@ __Description détaillée du cas__
      * Le cas s'arrete
   
 Diagramme de séquence
-<span style="color:red">Faire le diagramme de sequence ici</span>
+
+![](out/Diagramme/Sequence-1.png)
 
 
 # Cas 3
@@ -120,7 +120,9 @@ __Description détaillée du cas__\
      * Retour à 2
   
 Diagramme de séquence
-<span style="color:red">Faire le diagramme de sequence ici</span>
+
+![](out/Diagramme/Sequence-2.png)
+
 
 # Cas 4
 
@@ -150,7 +152,8 @@ __Description détaillée du cas__\
    * 6.Le système lui affiche le magasin ou le cadeau est vendu
   
 Diagramme de séquence
-<span style="color:red">Faire le diagramme de sequence ici</span>
+
+![](out/Diagramme/Sequence-3.png)
 
 
 # Cas 5
@@ -178,7 +181,7 @@ __Description détaillée du cas__
    Le solde de point du client est deduit du montant de l'achat
    
 Diagramme de séquence
-<span style="color:red">Faire le diagramme de sequence ici</span>
+![](out/Diagramme/Sequence-4.png)
 
 
 

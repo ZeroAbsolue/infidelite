@@ -78,17 +78,19 @@ package Strategie{
     class ReductionParkingStartegy
     class TransportCommunStartegy
     class NormalStrategie
-    class DixPourcentCout{
+    class DixPourcentPoint{
         getPoint():double
+    }
+    class DixPourcentCout{
+        getCout():double
     }
     interface IStrategyCout{
         getCout() : double
     }
     interface IStrategyPoint
-    ReductionParkingStartegy .up.|> IStrategyCout
     NormalStrategie .up.|> IStrategyCout
-    TransportCommunStartegy .up.|> IStrategyCout
-    DixPourcentCout .up.|> IStrategyPoint
+    DixPourcentPoint .up.|> IStrategyPoint
+    DixPourcentCout .up.|> IStrategyCout
 }
 
 Abonne -up-> "*"CarteInfidelite : possede
