@@ -201,7 +201,7 @@ Nous nous sommes rendus compte qu'un catalogue cadeau ou catalogue de produit en
 | Nom dans le <br>modèle de conception | Nom actuel                                               |
 | ------------------------------------ | -------------------------------------------------------- |
 | Strategy                             | IStrategyCout                                            |
-| ConcreteStrategy                     | reductionParking,<br>transportCommun,<br>NormalStrategie |
+| ConcreteStrategy                     | dixPourCentCout,<br>NormalStrategie |
 | doWork()                             | getCost():Double                                         |
 
 Ici nous désirions protéger l'action de calculer les couts d'un produit des différentes variantes d'algorithme qui pourraient exister pour effectuer cette action. Nous avons choisi donc d'utiliser le design pattern Strategy 
