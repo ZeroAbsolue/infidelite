@@ -73,13 +73,6 @@ public class Partenaire {
         Produit cloneProduit = (Produit) produit.clone();
         cloneProduit.setPrix(produit.getCout());
         listeDesVentes.add(cloneProduit);
-    }
-
-    public void vendre(Produit produit, Abonne client) throws CloneNotSupportedException {
-        Produit cloneProduit = (Produit) produit.clone();
-        cloneProduit.setPrix(produit.getCout());
-        listeDesVentes.add(cloneProduit);
-        System.out.println( client);
         if (client instanceof Abonne) {
             Abonne abonne = ((Abonne) client);
             if (validerMontant(abonne.getCarteInfidelite(), produit.getCout()))

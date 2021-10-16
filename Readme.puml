@@ -77,7 +77,7 @@ package Composite{
 package Strategie{
     class ReductionParkingStartegy
     class TransportCommunStartegy
-    class NormalStrategie
+    class CoutNormale
     class DixPourcentPoint{
         getPoint():double
     }
@@ -88,7 +88,7 @@ package Strategie{
         getCout() : double
     }
     interface IStrategyPoint
-    NormalStrategie .up.|> IStrategyCout
+    CoutNormale .up.|> IStrategyCout
     DixPourcentPoint .up.|> IStrategyPoint
     DixPourcentCout .up.|> IStrategyCout
 }

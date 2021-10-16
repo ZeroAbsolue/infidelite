@@ -20,7 +20,7 @@
 | Classe         | Cadeau           | Identifier un produit dont la méthode de calcul de prix est différente du la méthode normal | Produit                | Un cadeau est un produit dont la stratégie de calcul de prix est différente de celle normale                                      |                                                                                                                                   |
 | Interface      | IStrategyCout    | Identifier la strategie utilisée pour calcul le prix ou la reduction appliqué à un produit  |                        |                                                                                                                                   | Encapsuler à haut niveaux les variations possible qui pourrait avoir lieu lors du calcul de prix                                  |
 | Classe         | DixPourCentCout | Effectuer une reduction de 10 pour cent sur le cout                                   | IStrategyCout          | correspond à une variante d'algorithme de calcul de cout de produit                                                |                                                                                                                                   |
-| Classe         | NormalStrategie  | Identifier qu'aucune reduction n'est appliquée au produit                                   | IStrategyCout          | variante par défaut pour le calcul du prix d'un produit                                                                           |                                                                                                                                   |
+| Classe         | CoutNormale  | Identifier qu'aucune reduction n'est appliquée au produit                                   | IStrategyCout          | variante par défaut pour le calcul du prix d'un produit                                                                           |                                                                                                                                   |
 | Interface      | IStrategyPoint   | Identifier la strategie utilisée pour calcul le nombre de point appliqué à un produit       |                        |                                                                                                                                   | Encapsuler à haut niveaux les variations possible qui pourrait avoir lieu lors du calcul du nombre de points associe a un produit |
 | Classe         | DixPourCentPoint  | Identifier que dix pour cent du cout du produit est considere comme nombre de point         | IStrategyPoint         | variante permettant de definir que dix pour cent du cout du produit est considere comme nombre de point                           |                                                                                                                                   |
 ## Diagramme de classe
@@ -32,7 +32,7 @@
 
 ![](out/DiagrammeDeChoixDeConception2/cas1.png)
 
-__Description détaillée du cas__
+__Description détaillée du cas__\
    __Nom__: Effectuer un achat de produit\
    __Objectif__ : Augmenter le nombre de points d'infidelite apres achat dans une boutique\
    __Acteur principal__\
@@ -66,7 +66,7 @@ Diagramme de séquence
 
 ![](out/DiagrammeDeChoixDeConception2/cas2.png)
 
-__Description détaillée du cas__
+__Description détaillée du cas__\
    __Nom__: Bonus d'infidelite\
    __Objectif__ : Augmenter le nombre de points d'infidelite à la fin de chaque mois\
    __Acteur principal__\
@@ -201,7 +201,7 @@ Nous nous sommes rendus compte qu'un catalogue cadeau ou catalogue de produit en
 | Nom dans le <br>modèle de conception | Nom actuel                                               |
 | ------------------------------------ | -------------------------------------------------------- |
 | Strategy                             | IStrategyCout                                            |
-| ConcreteStrategy                     | dixPourCentCout,<br>NormalStrategie |
+| ConcreteStrategy                     | dixPourCentCout,<br>CoutNormale |
 | doWork()                             | getCout():Double                                         |
 
 Ici nous désirions protéger l'action de calculer les couts d'un produit des différentes variantes d'algorithme qui pourraient exister pour effectuer cette action. Nous avons choisi donc d'utiliser le design pattern Strategy 
