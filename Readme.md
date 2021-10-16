@@ -160,7 +160,8 @@ Diagramme de séquence
 
 ![](out/Diagramme/Readme-5.png)
 
-__Description détaillée du cas__\ 
+__Description détaillée du cas__
+ 
    __Nom__: Achat d'un cadeau en magasin\
    __Objectif__ : vendre un cadeau a un client\
    __Acteur principal__\
