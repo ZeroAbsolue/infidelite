@@ -24,7 +24,7 @@
 | Interface      | IStrategyPoint   | Identifier la strategie utilisée pour calcul le nombre de point appliqué à un produit       |                        |                                                                                                                                   | Encapsuler à haut niveaux les variations possible qui pourrait avoir lieu lors du calcul du nombre de points associe a un produit |
 | Classe         | DixPourCentPoint  | Identifier que dix pour cent du cout du produit est considere comme nombre de point         | IStrategyPoint         | variante permettant de definir que dix pour cent du cout du produit est considere comme nombre de point                           |                                                                                                                                   |
 ## Diagramme de classe
-![](out/DiagrammeDeChoixDeConception2/Diagramme%20de%20classe.png)
+![](out/Diagramme/Readme.png)
 
 
 ## Réalisation des cas d'utilisation minimaux

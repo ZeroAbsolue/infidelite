@@ -75,8 +75,6 @@ package Composite{
 
 
 package Strategie{
-    class ReductionParkingStartegy
-    class TransportCommunStartegy
     class CoutNormale
     class DixPourcentPoint{
         getPoint():double
