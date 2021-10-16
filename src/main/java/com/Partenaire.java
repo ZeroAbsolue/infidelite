@@ -73,8 +73,17 @@ public class Partenaire {
         Produit cloneProduit = (Produit) produit.clone();
         cloneProduit.setPrix(produit.getCout());
         listeDesVentes.add(cloneProduit);
+    }
+
+    public void vendre(Produit produit, Abonne client) throws CloneNotSupportedException {
+        Produit cloneProduit = (Produit) produit.clone();
+        cloneProduit.setPrix(produit.getCout());
+        listeDesVentes.add(cloneProduit);
+        System.out.println( client);
         if (client instanceof Abonne) {
-            ((Abonne) client).ajouterAchatChezPartenaire(this);
+            Abonne abonne = ((Abonne) client);
+            if (validerMontant(abonne.getCarteInfidelite(), produit.getCout()))
+                abonne.ajouterAListeDesPartenairesDuMois(this);
         }
     }
 
@@ -101,10 +110,12 @@ public class Partenaire {
      */
     public void offrir(Produit produit, Client client) {
         listeDesOffres.add(produit);
-        if (client instanceof Abonne)
-            ((Abonne) client).ajouterAchatChezPartenaire(this);
-        // TODO ajouter le bout de code qui permet de reduire le nombre de points dans
-        // la carte du client
+        if (client instanceof Abonne) {
+            Abonne abonne = ((Abonne) client);
+            if (validerPoint(abonne.getCarteInfidelite(), produit.getNombrePoints()))
+                abonne.deduirePoint(produit.getNombrePoints());
+
+        }
     }
 
     /*
@@ -129,8 +140,13 @@ public class Partenaire {
     }
 
     /* Permet de valider une carte */
-    public boolean validerCarte(CarteInfidelite carte, double montant, double point) {
-        return carte.getNombrePoints() >= point && carte.getSolde() >= montant;
+    public boolean validerPoint(CarteInfidelite carte, double point) {
+        return carte.getNombrePoints() >= point;
+    }
+
+    /* Permet de valider une carte */
+    public boolean validerMontant(CarteInfidelite carte, double montant) {
+        return carte.getSolde() >= montant;
     }
 
     public Partenaire() {

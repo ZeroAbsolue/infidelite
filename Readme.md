@@ -28,7 +28,7 @@
 
 
 ## Réalisation des cas d'utilisation minimaux
-# Cas 1
+# Cas 1 : Cumul de points
 
 ![](out/DiagrammeDeChoixDeConception2/cas1.png)
 
@@ -36,7 +36,7 @@ __Description détaillée du cas__
    __Nom__: Effectuer un achat de produit\
    __Objectif__ : Augmenter le nombre de points d'infidelite apres achat dans une boutique\
    __Acteur principal__\
-   Client: Souhaite faire un achat et cumuler des points\
+   __Client__: Souhaite faire un achat et cumuler des points\
    __Dates__ : 2021-10-11\
    __Version__: 0.1\
    __Précondition__\
@@ -62,7 +62,7 @@ __Description détaillée du cas__
 Diagramme de séquence
 ![](out/Diagramme/cumul%20de%20points.png)
 
-# Cas 2
+# Cas 2 : Bonus d'infidelite
 
 ![](out/DiagrammeDeChoixDeConception2/cas2.png)
 
@@ -70,7 +70,7 @@ __Description détaillée du cas__
    __Nom__: Bonus d'infidelite\
    __Objectif__ : Augmenter le nombre de points d'infidelite à la fin de chaque mois\
    __Acteur principal__\
-   Client: Obtenir bonus d'infidelite \
+   __Client__: Obtenir bonus d'infidelite \
    __Dates__ : 2021-10-11\
    __Version__: 0.1\
    __Précondition__\
@@ -93,7 +93,7 @@ Diagramme de séquence
 ![](out/Diagramme/Sequence-1.png)
 
 
-# Cas 3
+# Cas 3 : Consulter carte
 
 ![](out/DiagrammeDeChoixDeConception2/cas3.png)
 
@@ -101,7 +101,7 @@ __Description détaillée du cas__\
    __Nom__: Consulter carte\
    __Objectif__ : Consulter le solde de sa carte\
    __Acteur principal__\
-   Client: Obtenir le solde de sa carte d'infidelite \
+   __Client__: Obtenir le solde de sa carte d'infidelite \
    __Dates__ : 2021-10-11\
    __Version__: 0.1\
    __Précondition__
@@ -124,7 +124,7 @@ Diagramme de séquence
 ![](out/Diagramme/Sequence-2.png)
 
 
-# Cas 4
+# Cas 4 :  Catalogue cadeaux
 
 ![](out/DiagrammeDeChoixDeConception2/cas4.png)
 
@@ -132,7 +132,7 @@ __Description détaillée du cas__\
    __Nom__: Catalogue cadeaux\
    __Objectif__ : Consulter le catalogue de cadeaux\
    __Acteur principal__\
-   Client: Obtenir les informations d'un catalogue de cadeaux\
+   __Client__: Obtenir les informations d'un catalogue de cadeaux\
    __Dates__ : 2021-10-11\
    __Version__: 0.1\
    __Précondition__\

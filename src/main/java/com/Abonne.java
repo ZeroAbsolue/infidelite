@@ -35,7 +35,16 @@ public class Abonne extends Client {
         this.carteInfidelite = carteInfidelite;
     }
 
-    public void ajouterAchatChezPartenaire(Partenaire partenaire){
+    public void ajouterAListeDesPartenairesDuMois(Partenaire partenaire){
+        boolean existe = false;
+        for (Operation operation : operations) {
+            existe = operation.getPartenaire()==partenaire;
+        }
+        if(!existe)
         operations.add(new Operation(partenaire, new Date()));
+    }
+
+    public void deduirePoint(double nombrePoints) {
+        carteInfidelite.deduirePoint(nombrePoints);
     }
 }

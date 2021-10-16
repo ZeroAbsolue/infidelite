@@ -73,7 +73,7 @@ abonne->carteInfidelite: boolean valide = carteInfidelite.valider(mdp)
 alt valide == true
 partenaire->cadeau: point = cadeau.getNombrePoint()
 partenaire->carteInfidelite : abonne.carteInfidelite.reduirePoint(point)
-partenaire->carteInfidelite : abonne.carteInfidelite.ajouterListeDesPartenairesDuMois(this)
+partenaire->carteInfidelite : abonne.ajouterAListeDesPartenairesDuMois(this)
 end 
 deactivate partenaire
 @enduml

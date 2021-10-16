@@ -56,7 +56,6 @@ public class PartenaireTest {
         "Produits vendu(s):\n"+
         "Parking UQAM Pavillon SH, prix: 25.0$, duree: 0.15 heure(s), point(s): 2.5\n"+
         "Parking UQAM Pavillon SH, prix: 25.0$, duree: 0.15 heure(s), point(s): 2.5", stm.listeDesVentes());
-        // TODO faire un test dans le cas ou on applique une reduction de 10%
     }
 
     @Test
@@ -70,6 +69,7 @@ public class PartenaireTest {
 
     @Test
     public void validerCarteTest() {
-        assertTrue(stm.validerCarte(((Abonne) nicolas).getCarteInfidelite(),50.0,10));
+        assertTrue(stm.validerMontant(((Abonne) nicolas).getCarteInfidelite(),50.0));
+        assertTrue(stm.validerPoint(((Abonne) nicolas).getCarteInfidelite(),10));
     }
 }
