@@ -178,7 +178,7 @@ left to right direction
 actor client as C
 rectangle "Achat cadeau" {
     usecase "demander offre" as UC1
-    usecase "recuperer offre" as UC2
+    usecase "acheter offre" as UC2
     usecase "valider carte" as UC3
 
     UC2 .> UC1 : <<extends>>
