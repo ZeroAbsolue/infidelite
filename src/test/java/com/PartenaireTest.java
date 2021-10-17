@@ -12,7 +12,7 @@ public class PartenaireTest {
     Produit ticketParking;
     Produit ticketTransportEnCommun;
     Client john;
-    Client nicolas;
+    Abonne nicolas;
     CarteInfidelite carte;
 
     @Before

@@ -74,6 +74,7 @@ public class Partenaire {
         cloneProduit.setPrix(produit.getCout());
         listeDesVentes.add(cloneProduit);
         if (client instanceof Abonne) {
+            System.out.println( client.getNom());
             Abonne abonne = ((Abonne) client);
             if (validerMontant(abonne.getCarteInfidelite(), produit.getCout()))
                 abonne.ajouterAListeDesPartenairesDuMois(this);
