@@ -1,18 +1,18 @@
 @startuml
 title cumul de points
 participant Main
-participant "stm : Partenaire " as Partenaire
-participant "ticketMetro : Produit" as Produit
+participant "partenaire : Partenaire " as Partenaire
+participant "produit : Produit" as Produit
 participant "carteInfidelite : CarteInfidelite" as Carte
-participant  "wil : Abonne" as Abonne
-Main -> Partenaire ** : Partenaire stm = new Partenaire(nom, adresse)
+participant  "abonne : Abonne" as Abonne
+Main -> Partenaire ** : Partenaire partenaire = new Partenaire(nom, adresse)
 Main -> Produit ** : Produit produit = new Produit(nom, montant)
 Main -> Carte ** : CarteInfidelite carteInfidelite = new CarteInfidelite(montant)
-Main -> Abonne ** : Client wil = new Abonne(nom, carteInfidelite )
-Main->Partenaire  : stm.vendre(ticketMetro,wil)
-Partenaire->Produit : double cout = ticketMetro.getCout()
-alt wil.validerMontant(cout)
-    Partenaire->Produit : double point = ticketMetro.getNombrePoint()
+Main -> Abonne ** : Client abonne = new Abonne(nom, carteInfidelite )
+Main->Partenaire  : partenaire.vendre(produit,abonne)
+Partenaire->Produit : double cout = produit.getCout()
+alt abonne.validerMontant(cout)
+    Partenaire->Produit : double point = produit.getNombrePoint()
     Partenaire->Carte : carte.reduireCout(cout)
     Partenaire->Carte : carte.augmenterPoint(point)
 end
