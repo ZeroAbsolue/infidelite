@@ -13,8 +13,8 @@ Main->Partenaire  : partenaire.vendre(produit,abonne)
 Partenaire->Produit : double cout = produit.getCout()
 alt abonne.validerMontant(cout)
     Partenaire->Produit : double point = produit.getNombrePoint()
-    Partenaire->Carte : carte.reduireCout(cout)
-    Partenaire->Carte : carte.augmenterPoint(point)
+    Partenaire->Carte : carteInfidelite.reduireCout(cout)
+    Partenaire->Carte : carteInfidelite.augmenterPoint(point)
 end
 @enduml
 
