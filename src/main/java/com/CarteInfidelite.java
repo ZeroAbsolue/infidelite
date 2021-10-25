@@ -46,4 +46,6 @@ public class CarteInfidelite {
         nombrePoints += points;
     }
 
+   
+
 }

@@ -1,2 +1,79 @@
 @startuml
+title cumul de points
+participant Main
+participant "stm : Partenaire " as Partenaire
+participant "ticketMetro : Produit" as Produit
+participant "carteInfidelite : CarteInfidelite" as Carte
+participant  "wil : Abonne" as Abonne
+Main -> Partenaire ** : Partenaire stm = new Partenaire(nom, adresse)
+Main -> Produit ** : Produit produit = new Produit(nom, montant)
+Main -> Carte ** : CarteInfidelite carteInfidelite = new CarteInfidelite(montant)
+Main -> Abonne ** : Client wil = new Abonne(nom, carteInfidelite )
+Main->Partenaire  : stm.vendre(ticketMetro,wil)
+Partenaire->Produit : double cout = ticketMetro.getCout()
+alt wil.validerMontant(cout)
+    Partenaire->Produit : double point = ticketMetro.getNombrePoint()
+    Partenaire->Carte : carte.reduireCout(cout)
+    Partenaire->Carte : carte.augmenterPoint(point)
+end
+@enduml
+
+@startuml
+title Bonus d'infidelite
+participant Main
+participant "carteInfidelite : CarteInfidelite" as Carte
+Main->Carte ** : calculerBonus()
+activate Carte
+Carte->Carte : point += 10 * listeDesPartenaireDuMois.size()
+deactivate Carte
+@enduml
+
+@startuml
+title consulter solde
+participant Main
+participant "carteInfidelite : CarteInfidelite" as Carte
+/'Est ce que nous devons ajouter l'authentification'/
+/'Si oui decommenter la ligne 36 et retirer ** a la ligne 38'/
+' Main->Carte ** : validerMotDePasse(mdp)
+Main->Carte ** : getSolde()
+return solde
+
+@enduml
+
+@startuml
+title catalogue cadeau
+participant Main
+participant "collectionProduit : CollectionProduit" as collection
+participant "cadeau : Cadeau" as cadeau
+Main->collection**:getDescription()
+collection->collection : iterator = collectionProduit.iterator()
+loop iterator.hasNext()
+collection->cadeau ** : cadeau (Cadeau)iterator.next()
+collection->cadeau  : cadeau.getDescription()
+end
+
+@enduml
+
+@startuml
+title achat cadeau
+participant main
+participant "partenaire : Partenaire" as partenaire
+participant "abonne: Abonne" as abonne
+participant "carteInfidelite : CarteInfidelite" as carteInfidelite
+participant "cadeau:Cadeau" as cadeau
+
+main->partenaire ** : partenaire = new Partenaire(nom,adresse)
+main->carteInfidelite ** : carte= new CarteInfidelite(mdp)
+main->abonne ** : abonne = new Abonne(nom,carte)
+main->cadeau ** : cadeau = new Cadeau(point)
+main->partenaire : offrir(cadeau, abonne)
+activate partenaire
+partenaire -> abonne : abonne.validerCarte(mdp)
+abonne->carteInfidelite: boolean valide = carteInfidelite.valider(mdp)
+alt valide == true
+partenaire->cadeau: point = cadeau.getNombrePoint()
+partenaire->carteInfidelite : abonne.carteInfidelite.reduirePoint(point)
+partenaire->carteInfidelite : abonne.ajouterAListeDesPartenairesDuMois(this)
+end 
+deactivate partenaire
 @enduml

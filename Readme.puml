@@ -75,20 +75,20 @@ package Composite{
 
 
 package Strategie{
-    class ReductionParkingStartegy
-    class TransportCommunStartegy
-    class NormalStrategie
-    class DixPourcentCout{
+    class CoutNormale
+    class DixPourcentPoint{
         getPoint():double
+    }
+    class DixPourcentCout{
+        getCout():double
     }
     interface IStrategyCout{
         getCout() : double
     }
     interface IStrategyPoint
-    ReductionParkingStartegy .up.|> IStrategyCout
-    NormalStrategie .up.|> IStrategyCout
-    TransportCommunStartegy .up.|> IStrategyCout
-    DixPourcentCout .up.|> IStrategyPoint
+    CoutNormale .up.|> IStrategyCout
+    DixPourcentPoint .up.|> IStrategyPoint
+    DixPourcentCout .up.|> IStrategyCout
 }
 
 Abonne -up-> "*"CarteInfidelite : possede
@@ -178,7 +178,7 @@ left to right direction
 actor client as C
 rectangle "Achat cadeau" {
     usecase "demander offre" as UC1
-    usecase "recuperer offre" as UC2
+    usecase "acheter offre" as UC2
     usecase "valider carte" as UC3
 
     UC2 .> UC1 : <<extends>>

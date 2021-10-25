@@ -64,8 +64,6 @@ public class Partenaire {
         return result;
     }
 
-    
-    @Override
     public String toString() {
         return "Partenaire: " + getNom() + "," + " adresse: " + getAdresse();
     }
@@ -75,8 +73,12 @@ public class Partenaire {
         Produit cloneProduit = (Produit) produit.clone();
         cloneProduit.setPrix(produit.getCout());
         listeDesVentes.add(cloneProduit);
-        // TODO ajouter le partenaire a la liste des magasins ou le client a fait des
-        // achats
+        if (client instanceof Abonne) {
+            System.out.println( client.getNom());
+            Abonne abonne = ((Abonne) client);
+            if (validerMontant(abonne.getCarteInfidelite(), produit.getCout()))
+                abonne.ajouterAListeDesPartenairesDuMois(this);
+        }
     }
 
     /* Permet d'afficher la liste des ventes d'un partenaire */
@@ -102,8 +104,12 @@ public class Partenaire {
      */
     public void offrir(Produit produit, Client client) {
         listeDesOffres.add(produit);
-        // TODO ajouter le bout de code qui permet de reduire le nombre de points dans
-        // la carte du client
+        if (client instanceof Abonne) {
+            Abonne abonne = ((Abonne) client);
+            if (validerPoint(abonne.getCarteInfidelite(), produit.getNombrePoints()))
+                abonne.deduirePoint(produit.getNombrePoints());
+
+        }
     }
 
     /*
@@ -128,13 +134,17 @@ public class Partenaire {
     }
 
     /* Permet de valider une carte */
-    public boolean validerCarte(CarteInfidelite carte, double montant, double point) {
-        return carte.getNombrePoints() >= point && carte.getSolde() >= montant;
+    public boolean validerPoint(CarteInfidelite carte, double point) {
+        return carte.getNombrePoints() >= point;
+    }
+
+    /* Permet de valider une carte */
+    public boolean validerMontant(CarteInfidelite carte, double montant) {
+        return carte.getSolde() >= montant;
     }
 
     public Partenaire() {
     }
-
 
     public Partenaire nom(String nom) {
         setNom(nom);

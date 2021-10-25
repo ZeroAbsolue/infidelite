@@ -43,7 +43,6 @@ public class CollectionProduitTest {
 
     @Test
     public void test() {
-
         assertEquals(
                 "Collection Rayon\nListe des produits ou cadeau de la collection\nChemise , prix: 100.0$, point(s): 10.0\nPantalon , prix: 150.0$, point(s): 15.0\nJupes , prix: 90.0$, point(s): 9.0\nSac , prix: 100.0$, point(s): 10.0\nCollection Liquidation\nListe des produits ou cadeau de la collection\nChemise , prix: 90.0$, point(s): 9.0\nPantalon , prix: 135.0$, point(s): 13.5\nJupes , prix: 81.0$, point(s): 8.1\nSac , prix: 90.0$, point(s): 9.0\nVoiture, prix: 0.0$, point(s): 500.0, Partenaire: BMW, adresse: 4090 Rue Jean-Talon O, Montréal, QC H4P 1V5",
                 collectionProduit.description());
