@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="568.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.VenteController">
+  <children>
+    <SplitPane dividerPositions="0.0033594624860022394, 0.5296752519596865" focusTraversable="true" prefHeight="577.0" prefWidth="883.0" VBox.vgrow="ALWAYS">
+      <items>
+        <AnchorPane maxWidth="-Infinity" prefHeight="543.0" prefWidth="0.0" />
+        <ScrollPane prefHeight="566.0" prefWidth="447.0">
+          <content>
+            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="471.0" prefWidth="431.0">
+              <children>
+                        <TableView fx:id="tableProduits" layoutX="14.0" layoutY="83.0" onMouseClicked="#tableMouseCliecked" prefHeight="466.0" prefWidth="436.0">
+                          <columns>
+                            <TableColumn fx:id="colNom" prefWidth="238.0" text="Nom" />
+                            <TableColumn fx:id="colPrix" prefWidth="86.0" text="Prix" />
+                              <TableColumn fx:id="colAction" prefWidth="111.0" text="Action" />
+                          </columns>
+                        </TableView>
+                        <JFXButton buttonType="RAISED" layoutX="68.0" layoutY="21.0" prefHeight="46.0" prefWidth="46.0" text=" ">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:src/main/resources/images/man_orange_shopping_basket_50px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></JFXButton>
+                        <JFXButton buttonType="RAISED" layoutX="211.0" layoutY="27.0" onAction="#buttonOffreClidked" prefHeight="47.0" prefWidth="51.0" text=" ">
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:src/main/resources/images/gift_48px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></JFXButton>
+                        <JFXButton buttonType="RAISED" layoutX="339.0" layoutY="17.0" onAction="#buttonClientsClicked" prefHeight="66.0" prefWidth="72.0" text=" ">
+                           <graphic>
+                              <ImageView fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:src/main/resources/images/users_48px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></JFXButton>
+              </children>
+            </AnchorPane>
+          </content>
+        </ScrollPane>
+        <AnchorPane prefHeight="566.0" prefWidth="419.0" style="-fx-background-color: #dcdcdc;">
+          <children>
+            <Label alignment="CENTER" layoutX="76.0" layoutY="14.0" prefHeight="51.0" prefWidth="219.0" style="&#10;" text="Détails" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font name="Comic Sans MS" size="22.0" />
+                     </font></Label>
+                  <TableView fx:id="tableFacture" layoutX="-2.0" layoutY="88.0" prefHeight="320.0" prefWidth="419.0">
+                    <columns>
+                      <TableColumn fx:id="fctNom" prefWidth="198.0" text="Nom" />
+                        <TableColumn fx:id="fctQuantite" prefWidth="78.0" text="Quantite" />
+                        <TableColumn fx:id="fctPrix" prefWidth="62.0" text="Prix" />
+                        <TableColumn fx:id="actionFactureColumn" text="Action" />
+                    </columns>
+                  </TableView>
+                  <Text layoutX="14.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: bold;" text="Total" />
+                  <Text fx:id="totalFacture" layoutX="57.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                  <JFXButton fx:id="buttonPayer" buttonType="RAISED" layoutX="262.0" layoutY="491.0" onAction="#buttonPayerAbonneClicked" prefHeight="45.0" prefWidth="36.0" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="53.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="file:src/main/resources/images/card_payment_40px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+                  <JFXButton buttonType="RAISED" layoutX="74.0" layoutY="487.0" onAction="#btnAbonneClicked" prefHeight="46.0" prefWidth="46.0" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="53.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="file:src/main/resources/images/business_building_50px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+  </children>
+</VBox>

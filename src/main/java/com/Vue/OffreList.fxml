@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="298.0" prefWidth="487.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.OffreListController">
+   <children>
+      <TableView fx:id="tableOffre" prefHeight="298.0" prefWidth="487.0">
+        <columns>
+          <TableColumn fx:id="offreColNom" prefWidth="161.0" text="Nom" />
+          <TableColumn fx:id="offreColPoint" prefWidth="69.0" text="Point" />
+            <TableColumn fx:id="OffreColPartenaire" prefWidth="256.0" text="Partenaire" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

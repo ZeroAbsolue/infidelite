@@ -4,6 +4,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+import com.Modele.Aproduit;
+import com.Modele.Cadeau;
+import com.Modele.CollectionProduit;
+import com.Modele.DixPourCentMontant;
+import com.Modele.Partenaire;
+import com.Modele.Produit;
+
 import org.junit.Before;
 
 public class CollectionProduitTest {

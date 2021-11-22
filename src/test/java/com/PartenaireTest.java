@@ -5,6 +5,16 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import com.Modele.Abonne;
+import com.Modele.Cadeau;
+import com.Modele.CarteInfidelite;
+import com.Modele.Client;
+import com.Modele.Parking;
+import com.Modele.Partenaire;
+import com.Modele.Produit;
+import com.Modele.TransportCommun;
+import com.Modele.Type;
+
 import org.junit.Before;
 
 public class PartenaireTest {
@@ -14,6 +24,7 @@ public class PartenaireTest {
     Client john;
     Abonne nicolas;
     CarteInfidelite carte;
+    Cadeau naya;
 
     @Before
     public void setup() {
@@ -23,6 +34,7 @@ public class PartenaireTest {
         carte = new CarteInfidelite(1000,100);
         john = new Client("John Doe");
         nicolas = new Abonne("Nicolas", carte);
+        naya = new Cadeau("Eau mineral naya", 25,stm);
 
     }
 
@@ -46,11 +58,11 @@ public class PartenaireTest {
 
     @Test
     public void vendreTest() throws CloneNotSupportedException {
-        stm.vendre(ticketParking, john);
+        stm.vendre(ticketParking,1, john);
         assertEquals("Partenaire: Societe de transport de montreal, adresse: 800 Rue De La Gauchetière O, Montréal, QC H5A 1J6\n"+
         "Produits vendu(s):\n"+
         "Parking UQAM Pavillon SH, prix: 25.0$, duree: 0.15 heure(s), point(s): 2.5", stm.listeDesVentes());
-        stm.vendre(ticketParking, nicolas);
+        stm.vendre(ticketParking,1, nicolas);
         assertEquals(
         "Partenaire: Societe de transport de montreal, adresse: 800 Rue De La Gauchetière O, Montréal, QC H5A 1J6\n"+
         "Produits vendu(s):\n"+
@@ -60,11 +72,11 @@ public class PartenaireTest {
 
     @Test
     public void offrirTest() {
-        stm.offrir(ticketParking, nicolas);
+        stm.offrir(naya, nicolas);
         assertEquals(
         "Partenaire: Societe de transport de montreal, adresse: 800 Rue De La Gauchetière O, Montréal, QC H5A 1J6\n"+
         "Produits offert(s):\n"+
-        "Parking UQAM Pavillon SH, prix: 25.0$, duree: 0.15 heure(s), point(s): 2.5", stm.listeDesOffres());
+        "Eau mineral naya, prix: 0.0$, point(s): 25.0", stm.listeDesOffres());
     }
 
     @Test

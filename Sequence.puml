@@ -77,3 +77,27 @@ partenaire->carteInfidelite : abonne.ajouterAListeDesPartenairesDuMois(this)
 end 
 deactivate partenaire
 @enduml
+
+@startuml
+interface   Visitor{
+
+}
+
+class NecessityStrategy implements PriceStrategy
+class LiquorStrategy implements PriceStrategy
+class TabaccoStrategy implements PriceStrategy
+abstract class Produit{
+    Istrategy istrategy
+    getPrice(): double
+}
+class Necessity extends Produit{
+    getPrice(): double
+}
+class Tabacco extends Produit{
+    getPrice(): double
+}
+class Liquor extends Produit{
+    getPrice(): double
+}
+Produit -- PriceStrategy
+@enduml

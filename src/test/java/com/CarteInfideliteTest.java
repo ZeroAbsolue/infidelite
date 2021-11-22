@@ -2,6 +2,8 @@ package com;
 
 import static org.junit.Assert.assertEquals;
 
+import com.Modele.CarteInfidelite;
+
 import org.junit.Before;
 import org.junit.Test;
 

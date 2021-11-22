@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="95.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.EditSelectedProductQuantityController">
+   <children>
+      <JFXTextField fx:id="Qte" focusColor="#18a88d" layoutX="112.0" layoutY="14.0" prefHeight="25.0" prefWidth="316.0" text="2" />
+      <JFXButton layoutX="217.0" layoutY="54.0" onAction="#save" ripplerFill="BLACK" style="-fx-background-color: #18a88d;" text="Enregistrer" />
+      <Text layoutX="36.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUANTITE" />
+   </children>
+</AnchorPane>

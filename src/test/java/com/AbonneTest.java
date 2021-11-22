@@ -6,6 +6,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import com.Modele.Abonne;
+import com.Modele.CarteInfidelite;
+import com.Modele.Parking;
+import com.Modele.Partenaire;
+import com.Modele.Produit;
+import com.Modele.TransportCommun;
+import com.Modele.Type;
+
 import org.junit.Before;
 
 public class AbonneTest {
@@ -41,8 +49,8 @@ public class AbonneTest {
 
     @Test
     public void bonusInfidelite() throws CloneNotSupportedException {
-        stm.vendre(ticketParking, nicolas); 
-        rtl.vendre(ticketParking, nicolas); 
+        stm.vendre(ticketParking, 1,nicolas); 
+        rtl.vendre(ticketParking, 1,nicolas); 
         nicolas.calculerBonusInfidelite();
         assertEquals(120, nicolas.getNombrePoints(),0.0);
     }

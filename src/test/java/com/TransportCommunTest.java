@@ -1,6 +1,11 @@
 package com;
 
 import org.junit.Test;
+
+import com.Modele.Produit;
+import com.Modele.TransportCommun;
+import com.Modele.Type;
+
 import org.junit.Before;
 
 public class TransportCommunTest {

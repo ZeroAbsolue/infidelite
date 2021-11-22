@@ -4,6 +4,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+import com.Modele.Partenaire;
+import com.Modele.Zone;
+
 import org.junit.Before;
 
 public class ZoneTest {

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<SplitPane dividerPositions="0.5225885225885226" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="407.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.ClientsController">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <TableView fx:id="tblClient" layoutX="-1.0" layoutY="1.0" onMouseClicked="#tblClientOnMouseClicked" prefHeight="405.0" prefWidth="427.0">
+              <columns>
+                <TableColumn fx:id="clientColNom" prefWidth="210.0" text="Nom" />
+                <TableColumn fx:id="clientColSolde" minWidth="0.0" prefWidth="70.0" text="Solde" />
+                  <TableColumn fx:id="clientColPoints" prefWidth="77.0" text="Points" />
+                  <TableColumn fx:id="clientColStatut" prefWidth="67.0" text="Statut" />
+              </columns>
+            </TableView>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="462.0" prefWidth="384.0">
+         <children>
+            <TableView fx:id="tblOperation" prefHeight="405.0" prefWidth="388.0">
+              <columns>
+                <TableColumn fx:id="operationColAction" prefWidth="101.0" text="Action" />
+                <TableColumn fx:id="operationColSolde" prefWidth="69.0" text="Montant" />
+                  <TableColumn fx:id="operationColPoints" prefWidth="72.0" text="Points" />
+                  <TableColumn fx:id="operationColDate" prefWidth="145.0" text="Date" />
+              </columns>
+            </TableView>
+         </children></AnchorPane>
+  </items>
+</SplitPane>

@@ -4,6 +4,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+import com.Modele.Parking;
+import com.Modele.Produit;
+
 import org.junit.Before;    
     
 public class ParkingTest {
