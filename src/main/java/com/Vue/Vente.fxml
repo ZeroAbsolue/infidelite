@@ -105,7 +105,7 @@
                   </TableView>
                   <Text layoutX="14.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: bold;" text="Total" />
                   <Text fx:id="totalFacture" layoutX="57.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
-                  <JFXButton fx:id="buttonPayer" buttonType="RAISED" layoutX="262.0" layoutY="491.0" onAction="#buttonPayerAbonneClicked" prefHeight="45.0" prefWidth="36.0" text=" ">
+                  <JFXButton fx:id="buttonPayer" buttonType="RAISED" layoutX="262.0" layoutY="491.0" onAction="#buttonPayerAbonneClicked" prefHeight="45.0" prefWidth="36.0" text=" " visible="false">
                      <graphic>
                         <ImageView fitHeight="53.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                            <image>

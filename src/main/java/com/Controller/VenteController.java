@@ -46,6 +46,9 @@ public class VenteController implements AbonneObserver {
     private TableView<Produit> tableProduits;
 
     @FXML
+    private JFXButton buttonPayer;
+
+    @FXML
     private TableColumn<Produit, String> colNom = new TableColumn<>("Nom");
 
     @FXML
@@ -277,8 +280,8 @@ public class VenteController implements AbonneObserver {
     @Override
     public void update(Abonne abonne) {
         selectedAbonne = abonne;
-        System.out.println(abonne);
         abonneStage.close();
+        buttonPayer.setVisible(true);
     }
 
 }
