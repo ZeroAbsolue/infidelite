@@ -11,6 +11,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,14 +35,6 @@ public class Partenaire implements Serializable {
     @JoinTable(name = "partenaire_produit", joinColumns = @JoinColumn(name = "partenaire_id"), inverseJoinColumns = @JoinColumn(name = "produit_id"))
     private Set<Produit> listeDesProduits;
 
-    public Set<Produit> getListeDesProduits() {
-        return listeDesProduits;
-    }
-
-    public void setListeDesProduits(Set<Produit> listeDesProduits) {
-        this.listeDesProduits = listeDesProduits;
-    }
-
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "partenaire")
     private Set<Vente> listeDesVentes;
 
@@ -53,11 +46,12 @@ public class Partenaire implements Serializable {
     @JoinColumn(name = "zone_id")
     private Zone zone;
 
-    public Zone getZone() {
-        return zone;
+    public Partenaire() {
     }
 
-    public void setZone(Zone zone) {
+    public Partenaire(String nom, String adresse, Zone zone) {
+        this.nom = nom;
+        this.adresse = adresse;
         this.zone = zone;
     }
 
@@ -67,6 +61,32 @@ public class Partenaire implements Serializable {
         listeDesProduits = new LinkedHashSet<Produit>();
         listeDesVentes = new LinkedHashSet<Vente>();
         listeDesOffres = new LinkedHashSet<Cadeau>();
+    }
+
+    public Partenaire nom(String nom) {
+        setNom(nom);
+        return this;
+    }
+
+    public Partenaire adresse(String adresse) {
+        setAdresse(adresse);
+        return this;
+    }
+
+    public Set<Produit> getListeDesProduits() {
+        return listeDesProduits;
+    }
+
+    public void setListeDesProduits(Set<Produit> listeDesProduits) {
+        this.listeDesProduits = listeDesProduits;
+    }
+
+    public Zone getZone() {
+        return zone;
+    }
+
+    public void setZone(Zone zone) {
+        this.zone = zone;
     }
 
     public String getNom() {
@@ -118,7 +138,7 @@ public class Partenaire implements Serializable {
     }
 
     /* Permet de vendre un produit */
-    public void vendre(Produit produit, int quantite, Client client) throws CloneNotSupportedException {
+    public void vendre(Produit produit, int quantite, Abonne client) throws CloneNotSupportedException {
         Produit cloneProduit = (Produit) produit.clone();
         cloneProduit.setPrix(produit.getCout());
         if (client instanceof Abonne) {
@@ -126,7 +146,7 @@ public class Partenaire implements Serializable {
             if (validerMontant(abonne.getCarteInfidelite(), produit.getCout())) {
                 listeDesVentes.add(new Vente(cloneProduit, quantite, new Date(), this));
                 abonne.ajouterOperation(this, Type.CREDIT.toString());
-                abonne.majStatutVup();
+                abonne.checkAndUpdateStatutVup();
             }
         } else {
             listeDesVentes.add(new Vente(cloneProduit, quantite, new Date(), this));
@@ -135,7 +155,7 @@ public class Partenaire implements Serializable {
     }
 
     // Permet de vendre une collection de produit
-    public boolean vendre(ArrayList<Vente> ventes, Double montant, Client client) throws CloneNotSupportedException {
+    public boolean vendre(ArrayList<Vente> ventes, Double montant, Abonne client) throws CloneNotSupportedException {
         Iterator<Vente> produitsIterator = ventes.iterator();
         while (produitsIterator.hasNext()) {
             Vente iterator = (Vente) produitsIterator.next();
@@ -144,7 +164,7 @@ public class Partenaire implements Serializable {
                 if (validerMontant(abonne.getCarteInfidelite(), montant)) {
                     abonne.ajouterOperation(this, Type.CREDIT.toString());
                     listeDesVentes.add(iterator);
-                    abonne.majStatutVup();
+                    abonne.checkAndUpdateStatutVup();
                 }
                 return false;
             } else {
@@ -154,36 +174,10 @@ public class Partenaire implements Serializable {
         return true;
     }
 
-    private double calculerMontantTotalVente(ArrayList<Vente> ventes) {
-        double somme = 0;
-        for (Vente vente : ventes) {
-            somme += vente.getProduit().getCout();
-        }
-        return somme;
-    }
-
-    /* Permet d'afficher la liste des ventes d'un partenaire */
-    public String listeDesVentes() {
-        String result = toString() + "\n";
-        if (listeDesVentes.size() == 0)
-            result += "Aucune operation";
-        else {
-            result += "Produits vendu(s):\n";
-            Iterator<Vente> iterator = listeDesVentes.iterator();
-            while (iterator.hasNext()) {
-                Produit operation = (Produit) (iterator.next()).getProduit();
-                result += operation;
-                if (iterator.hasNext())
-                    result += "\n";
-            }
-        }
-        return result;
-    }
-
     /*
      * Permet d'ajouter un produit a la liste des produits offert par le partenaire
      */
-    public void offrir(Cadeau produit, Client client) {
+    public void offrir(Cadeau produit, Abonne client) {
         listeDesOffres.add(produit);
         if (client instanceof Abonne) {
             Abonne abonne = ((Abonne) client);
@@ -196,27 +190,8 @@ public class Partenaire implements Serializable {
     }
 
     /*
-     * Permet d'afficher la liste des offres qui ont été effectuées par le
-     * partenaire
+     * /* Permet de valider une carte
      */
-    public String listeDesOffres() {
-        String result = toString() + "\n";
-        if (listeDesOffres.size() == 0)
-            result += "Aucune offre";
-        else {
-            result += "Produits offert(s):\n";
-            Iterator<Cadeau> iterator = listeDesOffres.iterator();
-            while (iterator.hasNext()) {
-                Cadeau cadeau = iterator.next();
-                result += cadeau;
-                if (iterator.hasNext())
-                    result += "\n";
-            }
-        }
-        return result;
-    }
-
-    /* Permet de valider une carte */
     public boolean validerPoint(CarteInfidelite carte, double point) {
         return carte.getNombrePoints() >= point;
     }
@@ -224,25 +199,6 @@ public class Partenaire implements Serializable {
     /* Permet de valider une carte */
     public boolean validerMontant(CarteInfidelite carte, double montant) {
         return carte.getSolde() >= montant;
-    }
-
-    public Partenaire() {
-    }
-
-    public Partenaire nom(String nom) {
-        setNom(nom);
-        return this;
-    }
-
-    public Partenaire adresse(String adresse) {
-        setAdresse(adresse);
-        return this;
-    }
-
-    public Partenaire(String nom, String adresse, Zone zone) {
-        this.nom = nom;
-        this.adresse = adresse;
-        this.zone = zone;
     }
 
     public void enregistrerItemsFacturerCommeVente(Object[] itemFacturers, Abonne abonne) {

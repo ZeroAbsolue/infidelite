@@ -82,9 +82,15 @@ public class VenteController implements AbonneObserver {
     Stage clientStage = new Stage();
     Stage abonneStage = new Stage();
     Stage offreStage = new Stage();
+    Partenaire partenaire;
+
 
     @FXML
     void btnAbonneClicked(ActionEvent event) throws IOException {
+        launchListOfAbonne();
+    }
+
+    private void launchListOfAbonne() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../Vue/AbonneList.fxml"));
 
@@ -102,6 +108,10 @@ public class VenteController implements AbonneObserver {
 
     @FXML
     void buttonOffreClidked(ActionEvent event) throws IOException {
+        launchListOfCadeau();
+    }
+
+    private void launchListOfCadeau() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../Vue/OffreList.fxml"));
 
@@ -117,6 +127,10 @@ public class VenteController implements AbonneObserver {
 
     @FXML
     void buttonClientsClicked(ActionEvent event) throws IOException {
+        launchListOfAbonneAndTransactionPerAbonne();
+    }
+
+    private void launchListOfAbonneAndTransactionPerAbonne() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../Vue/AbonneListAndTransaction.fxml"));
 
@@ -151,31 +165,24 @@ public class VenteController implements AbonneObserver {
     }
 
     @FXML
-    void buttonPayerClicked(ActionEvent event) {
-        // CollectionVente collectionVente = new CollectionVente();
-        // ObservableList<Vente> produitFactures = tableFacture.getItems();
-        // double total = 0;
-        // for (Vente vente : produitFactures) {
-        // total += vente.getPrix();
-        // }
-
-        // return total;
-
-    }
-
-    @FXML
     void tableMouseCliecked(MouseEvent event) {
         Produit produit = tableProduits.getSelectionModel().getSelectedItem();
         factureTableViewController.addAndUpdateAllElement(new ItemFacturer(produit, 1));
     }
 
-    Partenaire partenaire;
 
     @FXML
     void initialize() {
         colNom.setCellValueFactory(new PropertyValueFactory<Produit, String>("nom"));
         colPrix.setCellValueFactory(new PropertyValueFactory<Produit, Double>("prix"));
         tableProduits.setItems(getProducts());
+        Callback<TableColumn<Produit, String>, TableCell<Produit, String>> cellFactory = addAbuttonQuantiteToEachProductToSell();
+        colAction.setCellFactory(cellFactory);
+        initializeFactureController();
+
+    }
+
+    private Callback<TableColumn<Produit, String>, TableCell<Produit, String>> addAbuttonQuantiteToEachProductToSell() {
         Callback<TableColumn<Produit, String>, TableCell<Produit, String>> cellFactory = (param) -> {
             // Make the tablecell containing button
             final TableCell<Produit, String> cell = new TableCell<Produit, String>() {
@@ -190,43 +197,45 @@ public class VenteController implements AbonneObserver {
                     } else {
                         final JFXButton editButton = new JFXButton("Quantite");
                         editButton.setOnAction(event -> {
-                            Produit produit = getTableView().getItems().get(getIndex());
-                            FXMLLoader loader = new FXMLLoader();
-                            loader.setLocation(getClass().getResource("../Vue/EditSelectedProductQuantity.fxml"));
-                            try {
-                                loader.load();
-                            } catch (IOException ex) {
-                                Logger.getLogger(VenteController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-
-                            Parent parent = loader.getRoot();
-                            editStage.setScene(new Scene(parent));
-                            editStage.setTitle(produit.toString());
-                            editStage.show();
-
-                            selectedProductQuantityController = loader.getController();
-                            selectedProductQuantityController.setSelectedProduct(produit);
-                            selectedProductQuantityController.register(factureTableViewController);
-                            selectedProductQuantityController.setStage(editStage);
+                            launchQuantityInterface();
                         });
                         HBox managedButton = new HBox(editButton);
                         setGraphic(managedButton);
                         setText(null);
                     }
                 }
+
+                private void launchQuantityInterface() {
+                    Produit produit = getTableView().getItems().get(getIndex());
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("../Vue/EditSelectedProductQuantity.fxml"));
+                    try {
+                        loader.load();
+                    } catch (IOException ex) {
+                        Logger.getLogger(VenteController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    Parent parent = loader.getRoot();
+                    editStage.setScene(new Scene(parent));
+                    editStage.setTitle(produit.toString());
+                    editStage.show();
+
+                    selectedProductQuantityController = loader.getController();
+                    selectedProductQuantityController.setSelectedProduct(produit);
+                    selectedProductQuantityController.register(factureTableViewController);
+                    selectedProductQuantityController.setStage(editStage);
+                }
             };
             return cell;
         };
-        colAction.setCellFactory(cellFactory);
-        initializeFactureController();
-
+        return cellFactory;
     }
 
     private void initializeFactureController() {
         factureTableViewController.setNameColumn(fctNom);
         factureTableViewController.setQuantityColumn(fctQuantite);
         factureTableViewController.setPriceColumn(fctPrix);
-        setActionCallback();
+        addAbuttonSupprimerToEachItemFacturerAdd();
         factureTableViewController.setTotalFacture(totalFacture);
         factureTableViewController.setTableFacture(tableFacture);
         factureTableViewController.initiliaze();
@@ -236,7 +245,7 @@ public class VenteController implements AbonneObserver {
         ObservableList<Produit> produits = FXCollections.observableArrayList();
         Database database = new Database();
         Session session = database.getSession();
-        partenaire = (Partenaire) session.createQuery("from Partenaire where id = 3").uniqueResult();
+        partenaire = (Partenaire) session.createQuery("from Partenaire where id = 2").uniqueResult();
         session.getTransaction().commit();
         for (Produit produit : partenaire.getListeDesProduits()) {
             produits.add(produit);
@@ -244,8 +253,7 @@ public class VenteController implements AbonneObserver {
         return produits;
     }
 
-    // TODO Transférer cette methode dans la classe FactureTableViewController
-    public void setActionCallback() {
+    public void addAbuttonSupprimerToEachItemFacturerAdd() {
         Callback<TableColumn<ItemFacturer, String>, TableCell<ItemFacturer, String>> actionFactureCellFactory = (
                 param) -> {
             // Make the tablecell containing button

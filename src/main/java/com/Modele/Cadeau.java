@@ -22,6 +22,10 @@ public class Cadeau extends Produit {
     private Partenaire partenaire;
     private double point;
 
+    public Cadeau() {
+    }
+
+
     public Cadeau(String nom, double point) {
         super(nom, 0);
         this.point = point;
@@ -52,11 +56,6 @@ public class Cadeau extends Produit {
         return - super.getNombrePoints();
     }
 
-    public Cadeau() {
-    }
-
-
-    
     public double getPoint() {
         return point;
     }

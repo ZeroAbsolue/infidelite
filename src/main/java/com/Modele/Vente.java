@@ -12,8 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Partenaire_vente")
 public class Vente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +26,11 @@ public class Vente implements Serializable {
     @JoinColumn(name = "produit_id")
     private Produit produit;
 
-    private Date date;
-
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "partenaire_id")
     private Partenaire partenaire;
 
+    private Date date;
     private double prix;
     private int quantite;
 
@@ -49,8 +50,22 @@ public class Vente implements Serializable {
         this.prix = prix;
     }
 
+    public Vente() {
+    }
 
-    public Vente(Produit produit,int quantite, Date date, Partenaire partenaire) {
+    public Vente(Produit produit, int quantite, Date date, Partenaire partenaire, double prix) {
+        this.produit = produit;
+        this.date = date;
+        this.partenaire = partenaire;
+        this.prix = prix;
+        this.quantite = quantite;
+    }
+
+    public String getNom() {
+        return this.produit.getNom();
+    }
+
+    public Vente(Produit produit, int quantite, Date date, Partenaire partenaire) {
         this.produit = produit;
         this.date = date;
         this.partenaire = partenaire;
@@ -80,23 +95,6 @@ public class Vente implements Serializable {
 
     public void setPartenaire(Partenaire partenaire) {
         this.partenaire = partenaire;
-    }
-
-    
-
-    public Vente() {
-    }
-
-    public Vente(Produit produit,int quantite, Date date, Partenaire partenaire, double prix) {
-        this.produit = produit;
-        this.date = date;
-        this.partenaire = partenaire;
-        this.prix = prix;
-        this.quantite = quantite;
-    }
-
-    public String getNom(){
-        return this.produit.getNom();
     }
 
     @Override

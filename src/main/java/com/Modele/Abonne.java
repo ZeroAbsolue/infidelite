@@ -1,7 +1,12 @@
 package com.Modele;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.WeekFields;
 import java.util.Date;
 import java.util.LinkedHashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,25 +18,41 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
+
+import org.hibernate.Session;
 
 @Entity
-public class Abonne extends Client {
+public class Abonne {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private int id;
     @OneToOne(cascade = CascadeType.ALL)
     private CarteInfidelite carteInfidelite;
-    private boolean vup;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "abonne")
     private Set<Operation> operations;
 
+    private String nom;
+    private boolean vup;
+
+    public Abonne() {
+    }
+
+    public Abonne(String nom) {
+        this.nom = nom;
+    }
+
     public Abonne(String nom, CarteInfidelite carte) {
-        super(nom);
+        this.nom = nom;
         this.carteInfidelite = carte;
         vup = false;
-        operations = new LinkedHashSet<Operation>();
+        operations = new LinkedHashSet<Operation>();  
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public boolean isVup() {
@@ -62,68 +83,15 @@ public class Abonne extends Client {
         operations.add(new Operation(partenaire, new Date(), this, type));
     }
 
-    public void deduirePoint(double nombrePoints) {
-        carteInfidelite.deduirePoint(nombrePoints);
-    }
-
-    /* Calcul le bonus d'infidelite */
-    public void calculerBonusInfidelite() {
-        double nbrePoints = carteInfidelite.getNombrePoints();
-        int nbreOperation = 0;
-        Date date = new Date();
-        for (Operation operation : operations) {
-            if (operation.getDate().getMonth() == date.getMonth() && operation.getDate().getYear() == date.getYear()) {
-                nbreOperation++;
-            }
-        }
-        carteInfidelite.setNombrePoints(nbrePoints + nbreOperation * 10);
-    }
-
-    public double getNombrePoints() {
-        return carteInfidelite.getNombrePoints();
-    }
-
-    public void majStatutVup() {
-        // TODO Ici mettre en place l'algorithme permettant de verifier si on a deja
-        // atteinds les 100 $ de depense et mettre a jour le statut vup
-    }
-
-    public boolean verifierSiSoldeSuperieurOuEgale(double montant) {
-        return carteInfidelite.verifierSiSoldeSuperieurOuEgale(montant);
-    }
-
-    public void incrementerNombreDePoints(double nombrePoints,Partenaire partenaire) {
-        carteInfidelite.augmenterPoint(nombrePoints);
-        Operation operation = new Operation(partenaire, new Date(), this, Type.CREDIT.toString(),0,nombrePoints);
-        Database database = new Database();
-        database.save(carteInfidelite);
-        database.save(operation);
-    }
-
-    public Abonne(String nom) {
-        super(nom);
-    }
-
-    public Abonne() {
-    }
-
-    public void reduireSolde(double montant, Partenaire partenaire) {
-        carteInfidelite.deduireSolde(montant); 
-        Operation operation = new Operation(partenaire, new Date(), this, Type.DEBIT.toString(),montant);
-        Database database = new Database();
-        database.save(carteInfidelite);
-        database.save(operation);
-    }
-
     public String getNom() {
-        return super.getNom();
+        return this.nom;
     }
 
-    public double getSolde(){
+    public double getSolde() {
         return carteInfidelite.getSolde();
     }
 
-    public double  getPoints() {
+    public double getPoints() {
         return carteInfidelite.getNombrePoints();
     }
 
@@ -131,9 +99,88 @@ public class Abonne extends Client {
         return isVup() ? "vup" : "not vup";
     }
 
+    public void deduirePoint(double nombrePoints) {
+        carteInfidelite.deduirePoint(nombrePoints);
+    }
+
+    public double getNombrePoints() {
+        return carteInfidelite.getNombrePoints();
+    }
+
+    public void checkAndUpdateStatutVup() {
+        if (hasMadeHundredOperation()) {
+            setVup();
+        } else
+            setNotVup();
+    }
+
+    private void setNotVup() {
+        Database database = new Database();
+        this.setVup(false);
+        database.save(this);
+    }
+
+    private void setVup() {
+        Database database = new Database();
+        this.setVup(true);
+        database.save(this);
+    }
+
+    private boolean hasMadeHundredOperation() {
+
+        Double weekAmountTotal = getTotalAmountSpendInWeekFromDatabase();
+        return weekAmountTotal >= 100;
+    }
+
+    private Double getTotalAmountSpendInWeekFromDatabase() {
+        try {
+            int weekOfYear = getWeekOfYear();
+            Database database = new Database();
+            String queryString = "SELECT SUM(montant) as montant FROM Operation where DATE_FORMAT(date, '%v') = "
+                    + weekOfYear + " and abonne_id =" + this.id;
+            Session session = database.getSession();
+            session.beginTransaction();
+            Double weekAmountTotal = (double) session.createQuery(queryString).uniqueResult();
+            session.getTransaction().commit();
+            return weekAmountTotal;
+        } catch (Exception e) {
+            return 0.0;
+        }
+
+    }
+
+    private int getWeekOfYear() {
+        DateFormat targetFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formatted = targetFormat.format(new Date());
+        Locale userLocale = Locale.GERMANY;
+        WeekFields weekNumbering = WeekFields.of(userLocale);
+        LocalDate date = LocalDate.parse(formatted);
+        int currentWeek = date.get(weekNumbering.weekOfWeekBasedYear());
+        return currentWeek;
+    }
+
+    public boolean verifierSiSoldeSuperieurOuEgale(double montant) {
+        return carteInfidelite.verifierSiSoldeSuperieurOuEgale(montant);
+    }
+
+    public void incrementerNombreDePoints(double nombrePoints, Partenaire partenaire) {
+        carteInfidelite.augmenterPoint(nombrePoints);
+        Operation operation = new Operation(partenaire, new Date(), this, Type.CREDIT.toString(), 0, nombrePoints);
+        Database database = new Database();
+        database.save(carteInfidelite);
+        database.save(operation);
+    }
+
+    public void reduireSolde(double montant, Partenaire partenaire) {
+        carteInfidelite.deduireSolde(montant);
+        Operation operation = new Operation(partenaire, new Date(), this, Type.DEBIT.toString(), montant);
+        Database database = new Database();
+        database.save(carteInfidelite);
+        database.save(operation);
+    }
+
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
         return super.toString();
     }
 }

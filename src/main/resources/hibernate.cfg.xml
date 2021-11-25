@@ -16,10 +16,7 @@
         <mapping class="com.Modele.Zone"/> 
         <mapping class="com.Modele.Partenaire"/> 
         <mapping class="com.Modele.Produit"/> 
-        <mapping class="com.Modele.Parking"/> 
-        <mapping class="com.Modele.TransportCommun"/> 
         <mapping class="com.Modele.CarteInfidelite"/> 
-        <mapping class="com.Modele.Client"/> 
         <mapping class="com.Modele.Abonne"/> 
         <mapping class="com.Modele.Vente"/> 
         <mapping class="com.Modele.Aproduit"/> 

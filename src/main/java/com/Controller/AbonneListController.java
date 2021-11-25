@@ -32,6 +32,7 @@ public class AbonneListController implements AbonneSubject {
     @FXML
     void tableAbonneOnMouseClicked(MouseEvent event) {
         abonne = tableAbonne.getSelectionModel().getSelectedItem();
+        abonne.checkAndUpdateStatutVup();
         notifyObservers();
     }
 

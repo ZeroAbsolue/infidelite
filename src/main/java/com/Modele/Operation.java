@@ -25,24 +25,20 @@ public class Operation {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "abonne_id")
     private Abonne abonne;
+
     private String type;
     private double montant;
     private double point;
     
-    public String getType() {
-        return type;
+    
+    
+
+    public Operation(Partenaire partenaire, Date date, Abonne abonne, String type) {
+        this.partenaire = partenaire;
+        this.date = date;
+        this.abonne = abonne;
+        this.type = type;
     }
-
-
-    public double getPoint() {
-        return point;
-    }
-
-
-    public void setPoint(double point) {
-        this.point = point;
-    }
-
 
     public Operation(Partenaire partenaire, Date date, Abonne abonne, String type, double montant, double point) {
         this.partenaire = partenaire;
@@ -62,6 +58,19 @@ public class Operation {
         this.montant = montant;
     }
 
+    public String getType() {
+        return type;
+    }
+
+
+    public double getPoint() {
+        return point;
+    }
+
+
+    public void setPoint(double point) {
+        this.point = point;
+    }
 
     public void setType(String type) {
         this.type = type;
@@ -93,15 +102,6 @@ public class Operation {
         this.partenaire = partenaire;
         this.date = date;
         this.abonne = abonne;
-    }
-
-    
-
-    public Operation(Partenaire partenaire, Date date, Abonne abonne, String type) {
-        this.partenaire = partenaire;
-        this.date = date;
-        this.abonne = abonne;
-        this.type = type;
     }
 
 
