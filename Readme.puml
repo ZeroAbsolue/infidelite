@@ -2,43 +2,44 @@
 title Diagramme de classe
 ' skinparam linetype ortho
 
-class Partenaire{
-    # nom : String
-    # adresse: String
-    + offrir(cadeau : AProduit, client : Client)
-    + vendre(produit : Produit, client : Client)
-    + catalogueProduits() : ArrayList<Produit>
-}
+package Modele{
 
-class Zone{
-    # nom : String
-    # code_postal : String
-}
+    class Partenaire{
+        # nom : String
+        # adresse: String
+        + offrir(cadeau : AProduit, client : Client)
+        + vendre(produit : Produit, client : Client)
+        + catalogueProduits() : ArrayList<Produit>
+    }
 
-class Abonne{
-    vup : boolean
-    + acheter (produit : Produit)
-    + chargerCarte (carte : CarteInfidelite)
-    + recupererCadeau (cadeau : Cadeau, carte : CarteInfidelite)
-}
+    class Zone{
+        # nom : String
+        # code_postal : String
+    }
 
-class Client{
-    + acheter (produit : Produit)
-}
+    class Abonne{
+        vup : boolean
+        + acheter (produit : Produit)
+        + chargerCarte (carte : CarteInfidelite)
+        + recupererCadeau (cadeau : Cadeau, carte : CarteInfidelite)
+    }
 
-class CarteInfidelite{
-    montant : double
-    nombrePoint : int
-    chargement (montant : int )
-    nouvelleAchat(montant :floar)
-    listePatenaire(): ArrayList<Partenaire>
-}
-class Ville{
-    # nom :String
-    # superficie: double
-}
+    class Client{
+        + acheter (produit : Produit)
+    }
 
-package Composite{
+    class CarteInfidelite{
+        montant : double
+        nombrePoint : int
+        chargement (montant : int )
+        nouvelleAchat(montant :floar)
+        listePatenaire(): ArrayList<Partenaire>
+    }
+    class Ville{
+        # nom :String
+        # superficie: double
+    }
+
     abstract  AProduit{
         getCout():double
     }
@@ -46,62 +47,137 @@ package Composite{
         istrategie : IStrategyCout
         getCout():double
     }
-    class CatalogueCadeau{
-        getCout() : double
-    }
-    class Parking{
-        #lieu : String
-        #prix : double
-        /'En heure'/ #durée : double
-        getCout() : double
-    }
-    class TransportCommun{
-        #type : Type
-        #prix : double
-        /'En heure'/ #durée : double
-        getCout() : double
-    }
+
     class Cadeau{
         getCout():double
     }
     Produit -left-|> AProduit
-    Parking -up-|> Produit
-    TransportCommun -up-|> Produit
     Cadeau -up-|> Produit
-    CatalogueCadeau -up-|> AProduit
-    CatalogueCadeau *-up- "1..*" AProduit
+
+
+    package Strategie{
+        class CoutNormale
+        class DixPourcentPoint{
+            getPoint():double
+        }
+        class DixPourcentCout{
+            getCout():double
+        }
+        interface IStrategyCout{
+            getCout() : double
+        }
+        interface IStrategyPoint
+        CoutNormale .up.|> IStrategyCout
+        DixPourcentPoint .up.|> IStrategyPoint
+        DixPourcentCout .up.|> IStrategyCout
+    }
+
+    package Observer{
+        interface AbonneObserver{
+            update(abonne Abonne)
+        }
+
+        interface AbonneSubject{
+            register(observer AbonneObserver)
+            unregister(observer AbonneObserver)
+            notifyObservers()
+
+        }
+
+        interface ItemFactureObserver{
+            update(itemFacturer ItemFacturer)
+        }
+
+        interface ItemFactureSubject {
+            register(observer ItemFactureObserver);
+            unregister(observer ItemFactureObserver o);
+            notifyObservers();
+        }
+
+
+
+    }
+
+    class ItemFacturer{
+
+    }
+
+    class FactureTableView implements ItemFactureObserver{
+
+    }
+
+    FactureTableView --> "*"ItemFacturer
+
+    class Vente{
+        quantite: int
+        date : Date
+    }
+
+    class Operation{
+        type: String
+        montant: double
+        point: double
+    }
+
+    class Database{
+
+    }
+
+    Abonne -up-> "*"CarteInfidelite : possede
+    Abonne -up-|> Client : est
+
+    Ville *-- "*" Zone
+    Zone *-right- "*" Partenaire
+    Partenaire -> "*" AProduit : vend ou offre
+    Produit -> IStrategyCout
+    Produit -> IStrategyPoint
+    CarteInfidelite -up-> "*"Partenaire : "est validée"
+    Partenaire --> "*" Vente : effectue
+    Abonne --> "*" Operation : effectue
+    Vente --> Produit: concerne
 
 }
 
+package Controller{
+    class AbonneListController{
 
-package Strategie{
-    class CoutNormale
-    class DixPourcentPoint{
-        getPoint():double
     }
-    class DixPourcentCout{
-        getCout():double
+    note bottom : "gère la vue qui présente \nla liste des abonnés et la liste\ndes opérations fait par l'abonné"
+
+
+    class ClientsController{
+
     }
-    interface IStrategyCout{
-        getCout() : double
+    note bottom: "gère la vue permettant de \nselectionner l'abonne a qui on \n un ou plusieurs produits"
+
+
+    class EditSelectedProductQuantityController{
+
     }
-    interface IStrategyPoint
-    CoutNormale .up.|> IStrategyCout
-    DixPourcentPoint .up.|> IStrategyPoint
-    DixPourcentCout .up.|> IStrategyCout
+    note top: "gère la vue permettant de \nspecifier le nombre de produit \nchoisi pour un produit lors d'un achat"
+
+
+    class OffreListController{
+
+    }
+    note bottom : "gère la vue permettant de \nlister les cadeaux stockées en \nbase de données"
+
+
+    class VenteController{
+
+    }
+    note top: "gère la vue principal de \nl'application. C'est elle le point d'entrée de l'application"
+
+    VenteController .down.|>AbonneObserver
+    EditSelectedProductQuantityController .down.|>ItemFactureSubject
+    AbonneListController .down.|>AbonneSubject
+    VenteController -down- ClientsController
+    VenteController -down- OffreListController
+    VenteController -down- AbonneListController
+    VenteController -down- EditSelectedProductQuantityController
+    VenteController -right- FactureTableView
+
 }
-
-Abonne -up-> "*"CarteInfidelite : possede
-Abonne -up-|> Client : est
-
-Ville *-- "*" Zone
-Zone *-right- "*" Partenaire
-Partenaire -> "*" AProduit : vend ou offre
-Produit -> IStrategyCout
-Produit -> IStrategyPoint
-CarteInfidelite -up-> "*"Partenaire : "est validée"
-
-
 @enduml
 
 @startuml

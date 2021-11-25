@@ -1,8 +1,4 @@
-package com.Controller;
-
-import com.Modele.ItemFacturer;
-import com.Modele.Cadeau;
-import com.Modele.ItemFactureObserver;
+package com.Modele;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -10,7 +6,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
-public class FactureTableViewController implements ItemFactureObserver {
+public class FactureTableView implements ItemFactureObserver {
 
     private TableView<ItemFacturer> tableFacture;
     public TableColumn<ItemFacturer, String> nameColumn = new TableColumn<>("Nom");
@@ -19,7 +15,7 @@ public class FactureTableViewController implements ItemFactureObserver {
     private TableColumn<ItemFacturer, String> actionColumn = new TableColumn<>("Action");
     private Text totalFacture;
 
-    public FactureTableViewController() {
+    public FactureTableView() {
     }
 
     public Text getTotalFacture() {

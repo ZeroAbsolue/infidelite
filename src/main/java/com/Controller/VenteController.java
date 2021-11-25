@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import com.Modele.Abonne;
 import com.Modele.AbonneObserver;
 import com.Modele.Database;
+import com.Modele.FactureTableView;
 import com.Modele.ItemFacturer;
 import com.Modele.Partenaire;
 import com.Modele.Produit;
@@ -76,7 +77,7 @@ public class VenteController implements AbonneObserver {
     private Text totalFacture;
 
     EditSelectedProductQuantityController selectedProductQuantityController;
-    FactureTableViewController factureTableViewController = new FactureTableViewController();
+    FactureTableView factureTableViewController = new FactureTableView();
     AbonneListController abonneListController ;
     Stage editStage = new Stage();
     Stage clientStage = new Stage();
