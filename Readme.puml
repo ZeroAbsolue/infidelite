@@ -72,41 +72,17 @@ package Modele{
         DixPourcentCout .up.|> IStrategyCout
     }
 
-    package Observer{
-        interface AbonneObserver{
-            update(abonne Abonne)
-        }
 
-        interface AbonneSubject{
-            register(observer AbonneObserver)
-            unregister(observer AbonneObserver)
-            notifyObservers()
-
-        }
-
-        interface ItemFactureObserver{
-            update(itemFacturer ItemFacturer)
-        }
-
-        interface ItemFactureSubject {
-            register(observer ItemFactureObserver);
-            unregister(observer ItemFactureObserver o);
-            notifyObservers();
-        }
-
-
-
-    }
 
     class ItemFacturer{
 
     }
 
-    class FactureTableView implements ItemFactureObserver{
+    class FactureTableView {
 
     }
 
-    FactureTableView --> "*"ItemFacturer
+    FactureTableView -right-> "*"ItemFacturer
 
     class Vente{
         quantite: int
@@ -126,11 +102,11 @@ package Modele{
     Abonne -up-> "*"CarteInfidelite : possede
     Abonne -up-|> Client : est
 
-    Ville *-- "*" Zone
+    Ville *-left- "*" Zone
     Zone *-right- "*" Partenaire
     Partenaire -> "*" AProduit : vend ou offre
-    Produit -> IStrategyCout
-    Produit -> IStrategyPoint
+    Produit --> IStrategyCout
+    Produit --> IStrategyPoint
     CarteInfidelite -up-> "*"Partenaire : "est validée"
     Partenaire --> "*" Vente : effectue
     Abonne --> "*" Operation : effectue
@@ -168,14 +144,41 @@ package Controller{
     }
     note top: "gère la vue principal de \nl'application. C'est elle le point d'entrée de l'application"
 
-    VenteController .down.|>AbonneObserver
-    EditSelectedProductQuantityController .down.|>ItemFactureSubject
-    AbonneListController .down.|>AbonneSubject
-    VenteController -down- ClientsController
-    VenteController -down- OffreListController
-    VenteController -down- AbonneListController
-    VenteController -down- EditSelectedProductQuantityController
-    VenteController -right- FactureTableView
+    package Observer{
+        interface AbonneObserver{
+            update(abonne Abonne)
+        }
+
+        interface AbonneSubject{
+            register(observer AbonneObserver)
+            unregister(observer AbonneObserver)
+            notifyObservers()
+
+        }
+
+        interface ItemFactureObserver{
+            update(itemFacturer ItemFacturer)
+        }
+
+        interface ItemFactureSubject {
+            register(observer ItemFactureObserver);
+            unregister(observer ItemFactureObserver o);
+            notifyObservers();
+        }
+
+
+
+    }
+
+    VenteController ..|>AbonneObserver
+    EditSelectedProductQuantityController ..|>ItemFactureSubject
+    AbonneListController ..|>AbonneSubject
+    VenteController -- ClientsController
+    VenteController -- OffreListController
+    VenteController -- AbonneListController
+    VenteController -- EditSelectedProductQuantityController
+    VenteController -- FactureTableView
+    FactureTableView ..|> ItemFactureObserver
 
 }
 @enduml
