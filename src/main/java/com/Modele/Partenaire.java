@@ -207,6 +207,7 @@ public class Partenaire implements Serializable {
             Vente nouvelleVete = new Vente(itemFacturer.getProduit(), itemFacturer.getQuantite(), new Date(), this);
             Database database = new Database();
             database.save(nouvelleVete);
+            abonne.checkAndUpdateStatutVup();
         }
     }
 

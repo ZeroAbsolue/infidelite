@@ -38,13 +38,11 @@ public class AbonneListController implements AbonneSubject {
 
     @FXML
     void initialize() {
-
         abonneColNom.setCellValueFactory(new PropertyValueFactory<Abonne, String>("nom"));
-        tableAbonne.setItems(getClients());
-
+        tableAbonne.setItems(getListOfAbonne());
     }
 
-    private ObservableList<Abonne> getClients() {
+    private ObservableList<Abonne> getListOfAbonne() {
         ObservableList<Abonne> abonnes = FXCollections.observableArrayList();
         Database database = new Database();
         Session session = database.getSession();

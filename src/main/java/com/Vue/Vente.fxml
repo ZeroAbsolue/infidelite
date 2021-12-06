@@ -33,6 +33,7 @@
 -->
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
@@ -61,7 +62,7 @@
                               <TableColumn fx:id="colAction" prefWidth="111.0" text="Action" />
                           </columns>
                         </TableView>
-                        <JFXButton buttonType="RAISED" layoutX="68.0" layoutY="21.0" prefHeight="46.0" prefWidth="46.0" text=" ">
+                        <JFXButton buttonType="RAISED" contentDisplay="TOP" layoutX="70.0" layoutY="4.0" prefHeight="46.0" prefWidth="46.0" text="Vente" textAlignment="CENTER">
                            <graphic>
                               <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -69,7 +70,7 @@
                                  </image>
                               </ImageView>
                            </graphic></JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="211.0" layoutY="27.0" onAction="#buttonOffreClidked" prefHeight="47.0" prefWidth="51.0" text=" ">
+                        <JFXButton buttonType="RAISED" contentDisplay="TOP" layoutX="200.0" layoutY="14.0" onAction="#buttonOffreClidked" prefHeight="69.0" prefWidth="100.0" text=" Liste des offres" textAlignment="CENTER">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -77,7 +78,7 @@
                                  </image>
                               </ImageView>
                            </graphic></JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="339.0" layoutY="17.0" onAction="#buttonClientsClicked" prefHeight="66.0" prefWidth="72.0" text=" ">
+                        <JFXButton alignment="TOP_LEFT" buttonType="RAISED" contentDisplay="TOP" layoutX="339.0" layoutY="7.0" onAction="#buttonClientsClicked" prefHeight="76.0" prefWidth="118.0" text="Liste des abonnes">
                            <graphic>
                               <ImageView fitHeight="47.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -105,15 +106,18 @@
                   </TableView>
                   <Text layoutX="14.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: bold;" text="Total" />
                   <Text fx:id="totalFacture" layoutX="57.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
-                  <JFXButton fx:id="buttonPayer" buttonType="RAISED" layoutX="262.0" layoutY="491.0" onAction="#buttonPayerAbonneClicked" prefHeight="45.0" prefWidth="36.0" text=" " visible="false">
+                  <JFXButton fx:id="buttonPayer" buttonType="RAISED" contentDisplay="TOP" layoutX="262.0" layoutY="485.0" onAction="#buttonPayerAbonneClicked" prefHeight="45.0" prefWidth="36.0" text=" Payer" textAlignment="CENTER" visible="false">
                      <graphic>
                         <ImageView fitHeight="53.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="file:src/main/resources/images/card_payment_40px.png" />
                            </image>
                         </ImageView>
-                     </graphic></JFXButton>
-                  <JFXButton buttonType="RAISED" layoutX="74.0" layoutY="487.0" onAction="#btnAbonneClicked" prefHeight="46.0" prefWidth="46.0" text=" ">
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets top="1.0" />
+                     </opaqueInsets></JFXButton>
+                  <JFXButton buttonType="RAISED" contentDisplay="TOP" layoutX="74.0" layoutY="483.0" onAction="#btnAbonneClicked" prefHeight="82.0" prefWidth="124.0" text="Choisir un abonne">
                      <graphic>
                         <ImageView fitHeight="53.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
                            <image>

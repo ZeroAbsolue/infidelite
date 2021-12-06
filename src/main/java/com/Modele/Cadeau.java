@@ -53,7 +53,7 @@ public class Cadeau extends Produit {
     }
 
     public double getNombrePoints() {
-        return - super.getNombrePoints();
+        return point;
     }
 
     public double getPoint() {

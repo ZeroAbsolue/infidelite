@@ -96,17 +96,29 @@ public class FactureTableView implements ItemFactureObserver {
         addAndUpdateAllElement(itemFacturer);
     }
 
-    public double calculerNombreDePointFacture() {
+
+    public void clear() {
+        tableFacture.getItems().clear();
+    }
+
+    public double calculerNombreDePointsDesProduits() {
         ObservableList<ItemFacturer> listeDesItemFacturers = tableFacture.getItems();
         double total = 0;
         for (ItemFacturer itemFacturer : listeDesItemFacturers) {
-            System.out.println((itemFacturer.getProduit() instanceof Cadeau) ? " Yes": "No");
-            total += itemFacturer.getQuantite() * itemFacturer.getProduit().getNombrePoints();
+            if (itemFacturer.getProduit().getCout() > 0)
+                total += itemFacturer.getQuantite() * itemFacturer.getProduit().getNombrePoints();
         }
         return total;
     }
 
-    public void clear() {
-        tableFacture.getItems().clear();
+    public double calculerNombreDePointsCadeau() {
+        ObservableList<ItemFacturer> listeDesItemFacturers = tableFacture.getItems();
+        double total = 0;
+        for (ItemFacturer itemFacturer : listeDesItemFacturers) {
+            System.out.println(itemFacturer.getProduit().getNombrePoints());
+            if (itemFacturer.getProduit().getCout() == 0)
+                total += itemFacturer.getQuantite() * itemFacturer.getProduit().getNombrePoints();
+        }
+        return total;
     }
 }

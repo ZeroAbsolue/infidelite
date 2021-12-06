@@ -48,7 +48,7 @@ public class Abonne {
         this.nom = nom;
         this.carteInfidelite = carte;
         vup = false;
-        operations = new LinkedHashSet<Operation>();  
+        operations = new LinkedHashSet<Operation>();
     }
 
     public void setNom(String nom) {
@@ -182,5 +182,13 @@ public class Abonne {
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    public void reduireNombreDePoints(double nombrePointsCadeau, Partenaire partenaire) {
+        carteInfidelite.deduirePoint(nombrePointsCadeau );
+        Operation operation = new Operation(partenaire, new Date(), this, Type.DEBIT.toString(), 0, nombrePointsCadeau );
+        Database database = new Database();
+        database.save(carteInfidelite);
+        database.save(operation);
     }
 }

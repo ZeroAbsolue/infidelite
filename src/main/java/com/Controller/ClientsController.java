@@ -73,7 +73,7 @@ public class ClientsController {
         clientColSolde.setCellValueFactory(new PropertyValueFactory<Abonne, Double>("solde"));
         clientColPoints.setCellValueFactory(new PropertyValueFactory<Abonne, Double>("points"));
         clientColStatut.setCellValueFactory(new PropertyValueFactory<Abonne, String>("statut"));
-        tblClient.setItems(getClients());
+        tblClient.setItems(getListOfAbonne());
 
         operationColAction.setCellValueFactory(new PropertyValueFactory<Operation, String>("type"));
         operationColSolde.setCellValueFactory(new PropertyValueFactory<Operation, Double>("montant"));
@@ -82,7 +82,7 @@ public class ClientsController {
 
     }
 
-    private ObservableList<Abonne> getClients() {
+    private ObservableList<Abonne> getListOfAbonne() {
         ObservableList<Abonne> abonnes = FXCollections.observableArrayList();
         Database database = new Database();
         Session session = database.getSession();

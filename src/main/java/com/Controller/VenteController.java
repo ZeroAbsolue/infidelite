@@ -78,13 +78,12 @@ public class VenteController implements AbonneObserver {
 
     EditSelectedProductQuantityController selectedProductQuantityController;
     FactureTableView factureTableViewController = new FactureTableView();
-    AbonneListController abonneListController ;
+    AbonneListController abonneListController;
     Stage editStage = new Stage();
     Stage clientStage = new Stage();
     Stage abonneStage = new Stage();
     Stage offreStage = new Stage();
     Partenaire partenaire;
-
 
     @FXML
     void btnAbonneClicked(ActionEvent event) throws IOException {
@@ -150,15 +149,26 @@ public class VenteController implements AbonneObserver {
         double montantFacture = calculerMontantTotalFacture();
         if (selectedAbonne.verifierSiSoldeSuperieurOuEgale(montantFacture)) {
             partenaire.enregistrerItemsFacturerCommeVente(tableFacture.getItems().toArray(), selectedAbonne);
-            double nombrePoints = calculerNombreDePointFacture();
-            selectedAbonne.incrementerNombreDePoints(nombrePoints, partenaire);
-            selectedAbonne.reduireSolde(montantFacture, partenaire);
+            double nombrePointsCadeau = calculerNombreDePointsCadeau();
+            double nombrePointsProduit = calculerNombreDePointsDesProduits();
+            if (nombrePointsProduit > 0)
+                selectedAbonne.incrementerNombreDePoints(nombrePointsProduit, partenaire);
+            if (nombrePointsCadeau > 0)
+                selectedAbonne.reduireNombreDePoints(nombrePointsCadeau, partenaire);
+            if (montantFacture > 0)
+                selectedAbonne.reduireSolde(montantFacture, partenaire);
+            selectedAbonne.checkAndUpdateStatutVup();
             factureTableViewController.clear();
+            
         }
     }
 
-    private double calculerNombreDePointFacture() {
-        return factureTableViewController.calculerNombreDePointFacture();
+    private double calculerNombreDePointsDesProduits() {
+        return factureTableViewController.calculerNombreDePointsDesProduits();
+    }
+
+    private double calculerNombreDePointsCadeau() {
+        return factureTableViewController.calculerNombreDePointsCadeau();
     }
 
     private double calculerMontantTotalFacture() {
@@ -170,7 +180,6 @@ public class VenteController implements AbonneObserver {
         Produit produit = tableProduits.getSelectionModel().getSelectedItem();
         factureTableViewController.addAndUpdateAllElement(new ItemFacturer(produit, 1));
     }
-
 
     @FXML
     void initialize() {
@@ -246,7 +255,7 @@ public class VenteController implements AbonneObserver {
         ObservableList<Produit> produits = FXCollections.observableArrayList();
         Database database = new Database();
         Session session = database.getSession();
-        partenaire = (Partenaire) session.createQuery("from Partenaire where id = 2").uniqueResult();
+        partenaire = (Partenaire) session.createQuery("from Partenaire where id = 1").uniqueResult();
         session.getTransaction().commit();
         for (Produit produit : partenaire.getListeDesProduits()) {
             produits.add(produit);
